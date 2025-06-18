@@ -1162,7 +1162,7 @@ async function fetchAndDisplayComments(sectionId) {
 /**
  * Behandelt das Abschicken eines neuen Kommentars.
  * @param {Event} event - Das Formular-Submit-Event.
- * @param {string} sectionId - Die ID der Sektion.
+ * @param {string} sectionId - Die ID der Sektion, zu der der Kommentar gehört.
  */
 async function handleCommentSubmit(event, sectionId) {
     event.preventDefault(); 
