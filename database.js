@@ -2,7 +2,7 @@
 const sqlite3 = require('sqlite3').verbose();
 
 // Öffnet die Datenbank-Datei. Wenn sie nicht existiert, wird sie erstellt.
-const db = new sqlite3.Database('./comments.db', (err) => {
+const db = new sqlite3.Database('/app/data/comments.db', (err) => {
     if (err) {
         console.error("Fehler beim Öffnen der Datenbank", err.message);
     } else {

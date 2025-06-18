@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '')));
 
 // Datenbankverbindung
-const db = new sqlite3.Database('./comments.db');
+const db = new sqlite3.Database('/app/data/comments.db');
 
 // API-Endpunkt, um Kommentare für eine bestimmte Sektion abzurufen (GET)
 app.get('/api/comments', (req, res) => {

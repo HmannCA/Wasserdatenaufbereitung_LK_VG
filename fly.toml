@@ -23,7 +23,7 @@ primary_region = 'ams'
 
 [mounts]
   source = "comments_data"
-  destination = "/app"
+  destination = "/app/data"
 
 [deploy]
   release_command = "node database.js"
