@@ -54,6 +54,9 @@ app.post('/api/comments', (req, res) => {
     });
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Wasserqualitaetsdaten_Aufbereitung_2.html'));
+});
 
 // Server starten
 app.listen(PORT, '0.0.0.0', () => {
