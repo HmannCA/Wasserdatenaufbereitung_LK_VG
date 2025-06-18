@@ -15,7 +15,7 @@
             background-color: #E1EBF1;
             color: #003F5C;
         }
-       .chart-container {
+        .chart-container {
             position: relative;
             margin: auto;
             height: 320px;
@@ -23,22 +23,22 @@
             max-width: 800px;
         }
         @media (min-width: 768px) {
-           .chart-container {
+        .chart-container {
                 height: 400px;
             }
         }
-       .card {
+    .card {
             background-color: white;
             border-radius: 0.75rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-       .card:hover {
+    .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
         }
-       .flow-step {
+    .flow-step {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -51,25 +51,25 @@
             font-weight: 600;
             min-height: 80px;
         }
-       .flow-arrow {
+    .flow-arrow {
             font-size: 2rem;
             color: #7392A5;
             margin: 0 1rem;
             display: none;
         }
         @media (min-width: 768px) {
-           .flow-arrow {
+        .flow-arrow {
                 display: block;
             }
         }
-         @media (max-width: 767px) {
-           .flow-arrow-mobile {
+        @media (max-width: 767px) {
+        .flow-arrow-mobile {
                 display: block;
                 transform: rotate(90deg);
-                 margin: 1rem 0;
+                margin: 1rem 0;
             }
         }
-       .accordion-button {
+    .accordion-button {
             background-color: #f0f5f9;
             color: #366682;
             cursor: pointer;
@@ -86,18 +86,18 @@
             align-items: center;
             margin-top: 1.5rem;
         }
-       .accordion-button:hover,.accordion-button.active {
+    .accordion-button:hover,.accordion-button.active {
             background-color: #d9e2e9;
         }
-       .accordion-button.icon::before {
+    .accordion-button.icon::before {
             content: '+';
             font-size: 1.5rem;
             font-weight: 300;
         }
-       .accordion-button.active.icon::before {
+    .accordion-button.active.icon::before {
             content: '−';
         }
-       .accordion-content {
+    .accordion-content {
             padding: 0 1rem;
             background-color: white;
             max-height: 0;
@@ -109,48 +109,47 @@
             border-bottom-left-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
         }
-       .accordion-content-inner {
+    .accordion-content-inner {
             padding: 1.5rem 0;
         }
-       .accordion-content h3 {
+    .accordion-content h3 {
             font-size: 1.5rem;
             font-weight: bold;
             color: #003F5C;
             margin-top: 1.5rem;
             margin-bottom: 1rem;
         }
-       .accordion-content h4 {
+    .accordion-content h4 {
             font-size: 1.15rem;
             font-weight: bold;
             color: #003F5C;
             margin-top: 1.25rem;
             margin-bottom: 0.75rem;
         }
-       .accordion-content p,.accordion-content li {
+    .accordion-content p,.accordion-content li {
             color: #366682;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
-       .accordion-content ul {
+    .accordion-content ul {
             list-style-type: disc;
             padding-left: 1.5rem;
         }
-       .accordion-content table {
+    .accordion-content table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
-       .accordion-content th,.accordion-content td {
+    .accordion-content th,.accordion-content td {
             border: 1px solid #A0BCCB;
             padding: 0.75rem;
             text-align: left;
         }
-       .accordion-content th {
+    .accordion-content th {
             background-color: #E1EBF1;
             font-weight: 600;
         }
-        /* Style for reference links */
         a {
             color: #007BFF;
             text-decoration: none;
@@ -161,8 +160,6 @@
         .reference-list li {
             margin-bottom: 0.5rem;
         }
-
-        /* NEU: Styles für den Kommentarbereich */
         .comments-section {
             border-top: 1px solid #d9e2e9;
             margin-top: 1.5rem;
@@ -205,6 +202,42 @@
         .comment-form button:hover {
             background-color: #366682;
         }
+
+        /* NEUE STILE aus Ablauf_1.html, angepasst an das Design */
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+        }
+        .details-content.open {
+            max-height: 1000px; /* Erhöht für mehr Puffer */
+            margin-top: 1rem;
+        }
+        .flow-connector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem;
+            color: #7392A5; /* Angepasste Farbe */
+        }
+        .flow-connector::after {
+            content: '↓';
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .workflow-step .card {
+            cursor: pointer;
+        }
+        .workflow-step .card .chart-container {
+            height: 250px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cursor-pointer {
+            background-color: #f7f6f6;
+        }
+        
     </style>
 </head>
 <body class="antialiased">
@@ -238,7 +271,7 @@
 
         <main class="space-y-12 md:space-y-20">
             
-            <section class="card">
+            <section class="card"> <!--Einleitung-->
                 <h2 class="text-3xl font-bold text-center mb-8">Einleitung</h2>
                 <p>Die Installation automatischer Messstationen zur stündlichen Erfassung von Wasserqualitätsparametern an Seen wie dem Useriner See markiert einen Paradigmenwechsel in der Gewässerüberwachung. Im Gegensatz zur traditionellen, niederfrequenten Beprobung, die oft nur Momentaufnahmen liefert, ermöglichen hochfrequente Datenreihen ein tiefgreifendes, mechanistisches Verständnis der komplexen physikalischen, chemischen und biologischen Prozesse in aquatischen Ökosystemen.[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10061935/" target="_blank">1</a>, <a href="https://pubs.acs.org/doi/10.1021/acs.est.2c07798" target="_blank">2</a>] Diese hohe zeitliche Auflösung ist unerlässlich, um kurzfristige, aber ökologisch hochrelevante Ereignisse wie Starkregeneinträge, Algenblüten oder Sauerstoffschwankungen zu erfassen und ihre Auswirkungen zu bewerten.[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10061935/" target="_blank">1</a>, <a href="https://serc.carleton.edu/eddie/teaching_materials/modules/module9.html" target="_blank">3</a>]</p>
 
@@ -263,7 +296,7 @@
                 </div>
             </section>
             
-            <section>
+            <section> <!--Unser zweistufiger Prozess für verlässliche Daten-->
                 <h2 class="text-3xl font-bold text-center mb-8">Unser zweistufiger Prozess für verlässliche Daten</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center">
                     <div class="flow-step">1. Automatisierte Validierung</div>
@@ -274,7 +307,7 @@
                 </div>
             </section>
 
-            <section class="card">
+            <section class="card"> <!--Schritt 1: Automatisierte Datenvalidierung (QA/QC)-->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div>
                         <h2 class="text-2xl font-bold mb-4">Schritt 1: Automatisierte Datenvalidierung (QA/QC)</h2>
@@ -395,7 +428,7 @@
                 </div>
             </section>
             
-            <section class="card">
+            <section class="card"> <!--Ein Tag im Leben des Useriner Sees-->
                 <h2 class="text-2xl font-bold text-center mb-4">Ein Tag im Leben des Useriner Sees</h2>
                 <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die stündlichen Daten zeigen eine hohe Dynamik, die durch einen einfachen Tagesmittelwert verloren ginge. Besonders der pH-Wert und der gelöste Sauerstoff schwanken stark durch die biologische Aktivität (Photosynthese am Tag, Atmung in der Nacht).</p>
                 <div class="chart-container">
@@ -404,7 +437,7 @@
                 <p class="text-center text-sm text-[#366682] mt-2">Stündliche Messwerte für pH und gelösten Sauerstoff am 28. April 2025.</p>
             </section>
 
-            <section class="card">
+            <section class="card"> <!--Schritt 2: Intelligente Konsolidierung-->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div>
                          <h2 class="text-2xl font-bold mb-4">Schritt 2: Intelligente Konsolidierung</h2>
@@ -500,7 +533,7 @@
                 </div>
             </section>
             
-            <section class="card">
+            <section class="card"> <!--Das Ziel: FAIR Open Data-->
                 <h2 class="text-2xl font-bold text-center mb-4">Das Ziel: FAIR Open Data</h2>
                 <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die aufbereiteten Tagesdaten werden in einem standardisierten, "langen" Format bereitgestellt. Das macht sie auffindbar, zugänglich, interoperabel und nachnutzbar (FAIR) – die Grundlage für eine breite Anwendung in Wissenschaft und Praxis.</p>
                 <div class="overflow-x-auto bg- p-4 rounded-lg">
@@ -615,6 +648,215 @@
             </section>
 
             <section class="card">
+                <h2 class="text-3xl font-bold text-center mb-8">Der Weg der Wasserdaten: Vom Rohwert zum JSON-Objekt</h2>
+                <section id="phase1" class="mb-16">
+                    <h3 class="text-2xl font-bold text-center text-[#003F5C] mb-2">Phase 1: Automatisierte Datenvalidierung</h3>
+                    <p class="text-center text-gray-500 mb-8">(Jeder stündliche Messwert durchläuft diese Prüf-Kaskade)</p>
+                    
+                    <div class="workflow-step" data-step="1.0">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">START: Rohdaten-Anlieferung</h4>
+                            <p class="text-center text-gray-500 mt-1">Stündlicher Datensatz von der Messstation.</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Die Messstation liefert stündlich einen neuen Datensatz. Dieser Datensatz enthält eine Zeitangabe und die Messwerte für alle Parameter.</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <p>Entgegennahme der Daten im CSV-Format und Parsen in einzelne Werte.</p>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Ein Satz von Rohwerten für einen spezifischen Zeitpunkt.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="1.1">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">1. Plausibilitätsprüfung (Range Check)</h4>
+                            <p class="text-center text-gray-500 mt-1">Liegt der Wert im physikalisch möglichen Bereich? (z.B. pH 0-14)</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Es wird geprüft, ob der Messwert physikalisch oder chemisch überhaupt möglich ist.</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <pre class="bg-gray-100 p-2 rounded-md text-sm"><code>IF messwert &lt; min OR messwert &gt; max<br>THEN markiere als 'fehlerhaft'</code></pre>
+                                <p class="mt-1 text-sm">Beispiele: pH-Wert (0-14), Wassertemperatur (-2°C bis 40°C).</p>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Der Messwert geht entweder unverändert weiter oder wird als "fehlerhaft" markiert.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="1.2">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">2. Prüfung auf konstante Werte (Stuck Value)</h4>
+                            <p class="text-center text-gray-500 mt-1">Liefert der Sensor über Stunden exakt den gleichen Wert?</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Es wird geprüft, ob der Sensor "hängt", also über einen längeren Zeitraum exakt denselben Wert liefert.</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <pre class="bg-gray-100 p-2 rounded-md text-sm"><code>IF messwert(t) == messwert(t-1) ...<br>THEN markiere als 'fehlerhaft'</code></pre>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Der Messwert geht entweder unverändert weiter oder wird als "fehlerhaft" markiert.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="1.3">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">3. Ausreißer-Prüfung (Spike/Dip Check)</h4>
+                            <p class="text-center text-gray-500 mt-1">Gibt es einen unrealistisch schnellen Sprung im Messwert?</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Es wird geprüft, ob ein Wert unrealistisch schnell von seinen Nachbarwerten abweicht.</p>
+                                <div class="chart-container my-4">
+                                    <canvas id="spikeChart"></canvas>
+                                </div>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <pre class="bg-gray-100 p-2 rounded-md text-sm"><code>IF abs(wert(t) - wert(t-1)) > max_delta<br>THEN markiere als 'verdächtig'</code></pre>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Der Messwert wird als "einwandfrei" oder "verdächtig" eingestuft.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="1.4">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">Finale Kennzeichnung (Flagging)</h4>
+                            <p class="text-center text-gray-500 mt-1">Jeder Wert erhält ein Qualitäts-Label.</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Jeder Messwert erhält eine eindeutige Qualitätskennzeichnung (ein "Flag").</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <p>Zuweisung eines Qualitäts-Codes zu jedem Messwert:</p>
+                                <ul class="list-disc list-inside mt-2 bg-gray-50 p-3 rounded">
+                                    <li><span class="font-bold text-green-600">Code 1:</span> Einwandfrei</li>
+                                    <li><span class="font-bold text-yellow-600">Code 2:</span> Verdächtig (z.B. Ausreißer)</li>
+                                    <li><span class="font-bold text-red-600">Code 3:</span> Fehlerhaft (Plausibilität verletzt)</li>
+                                    <li><span class="font-bold text-gray-600">Code 4:</span> Fehlend (kein Wert)</li>
+                                </ul>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Eine Tabelle mit Rohwerten und einer zusätzlichen Spalte für den Qualitäts-Flag.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase2" class="mb-16">
+                    <h3 class="text-2xl font-bold text-center text-[#003F5C] mb-2">Phase 2: Datenkonsolidierung</h3>
+                    <p class="text-center text-gray-500 mb-8">(Aggregation der 24 validierten Stundenwerte eines Tages)</p>
+                    
+                    <div class="workflow-step" data-step="2.1">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">Daten filtern</h4>
+                            <p class="text-center text-gray-500 mt-1">Nur "einwandfreie" und "verdächtige" Werte werden für die Tagesstatistik verwendet.</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Für die Berechnung der Tageswerte werden nur die qualitätsgesicherten Daten herangezogen. "Fehlerhafte" Werte werden ignoriert.</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <pre class="bg-gray-100 p-2 rounded-md text-sm"><code>SELECT * FROM tagesdaten<br>WHERE flag IN ('Einwandfrei', 'Verdächtig')</code></pre>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Eine bereinigte Liste von Messwerten für die Konsolidierung.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="2.2">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">Prüfung auf Repräsentativität</h4>
+                            <p class="text-center text-gray-500 mt-1">Sind genug valide Werte (>75%) für einen aussagekräftigen Tageswert vorhanden?</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Es wird sichergestellt, dass genügend valide Daten für eine aussagekräftige Tagesstatistik vorhanden sind.</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <pre class="bg-gray-100 p-2 rounded-md text-sm"><code>IF anzahl_valider_werte &lt; (24 * 0.75)<br>THEN markiere als 'nicht repräsentativ'</code></pre>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Die Konsolidierung wird fortgesetzt oder der Tageswert wird mit einem Warnhinweis versehen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="2.3">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">Intelligente Konsolidierung</h4>
+                            <p class="text-center text-gray-500 mt-1">Berechnung relevanter Kennzahlen pro Parameter (Min, Max, Median, etc.).</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Für jeden Parameter werden die wissenschaftlich relevanten statistischen Kennzahlen berechnet.</p>
+                                <div class="mt-2 bg-gray-50 p-3 rounded">
+                                    <ul class="list-disc list-inside space-y-1">
+                                        <li><b>Temperatur, Leitfähigkeit, Sauerstoff:</b> Min, Max, Mittelwert, Std.Abw.</li>
+                                        <li><b>pH-Wert:</b> Min, Max, Median (wichtig für logarithmische Skala!)</li>
+                                        <li><b>Trübung, Chlorophyll-a:</b> Max, Mittelwert (wichtig für Ereignisse/Blüten)</li>
+                                    </ul>
+                                </div>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Ein Set von aussagekräftigen Tages-Kennzahlen für jeden Parameter.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="phase3">
+                    <h3 class="text-2xl font-bold text-center text-[#003F5C] mb-2">Phase 3: Datenauslieferung & Veröffentlichung</h3>
+                    <p class="text-center text-gray-500 mb-8">(Bereitstellung der Daten für die Öffentlichkeit)</p>
+                    
+                    <div class="workflow-step" data-step="3.1">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">JSON-Objekt erstellen</h4>
+                            <p class="text-center text-gray-500 mt-1">Alle Tages-Kennzahlen werden in ein standardisiertes, maschinenlesbares Format verpackt.</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Alle berechneten Tages-Kennzahlen werden in ein standardisiertes, maschinenlesbares Format (JSON) überführt.</p>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Ein fertiges, sauberes JSON-Objekt pro See und Tag.</p>
+                                <div class="bg-gray-800 text-white p-4 rounded-md mt-2 text-sm relative">
+                                    <button onclick="copyCode(this)" class="absolute top-2 right-2 bg-gray-600 hover:bg-gray-500 text-white py-1 px-2 rounded text-xs">Kopieren</button>
+                                    <pre><code id="jsonCode">{
+            "see_id": "DE_MV_USERINERSEE",
+            "datum": "2025-04-28",
+            "parameter": "ph",
+            "einheit": "None",
+            "tages_median": 8.75,
+            "tages_min": 8.61,
+            "tages_max": 8.89,
+            "anzahl_valide_werte": 24,
+            "hinweis": null
+            }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-connector"></div>
+
+                    <div class="workflow-step" data-step="3.2">
+                        <div class="card cursor-pointer">
+                            <h4 class="font-bold text-xl text-center">ENDE: Bereitstellung für ODP</h4>
+                            <p class="text-center text-gray-500 mt-1">Die aufbereiteten Daten sind nun öffentlich verfügbar.</p>
+                            <div class="details-content">
+                                <h5 class="font-semibold mt-4">Was passiert hier?</h5>
+                                <p>Das finale JSON-Objekt wird an die Open-Data-Plattform übergeben oder über eine API zum Abruf bereitgestellt.</p>
+                                <h5 class="font-semibold mt-2">Prüffunktionen / Aktionen:</h5>
+                                <p>API-Call (POST) an die ODP oder Ablage der JSON-Datei in einem öffentlichen Speicher.</p>
+                                <h5 class="font-semibold mt-2">Ergebnis / Output:</h5>
+                                <p>Die qualitätsgesicherten und konsolidierten Daten sind öffentlich zugänglich und nachnutzbar (FAIR-Prinzip).</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section class="card"> <!--Zusammenfassende Handlungsempfehlungen-->
                 <h2 class="text-2xl font-bold text-center mb-4">Zusammenfassende Handlungsempfehlungen</h2>
                 <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die erfolgreiche Bereitstellung von hochfrequenten Wasserqualitätsdaten erfordert einen systematischen und wissenschaftlich fundierten Ansatz. Hier sind die zentralen Empfehlungen zusammengefasst.</p>
                 <button class="accordion-button" data-section-id="handlungsempfehlungen">
@@ -645,7 +887,7 @@
                 </div>
             </section>
 
-            <section class="card">
+            <section class="card"> <!--Kosten-Nutzen-Analyse: Eigenentwicklung vs. Softwarekauf-->
                 <h2 class="text-2xl font-bold text-center mb-4">Kosten-Nutzen-Analyse: Eigenentwicklung vs. Softwarekauf</h2>
                 <p>Die Entscheidung zwischen der Entwicklung einer maßgeschneiderten Lösung und dem Kauf einer Standardsoftware ist strategisch. Beide Wege haben spezifische Vor- und Nachteile in Bezug auf Kosten, Flexibilität und langfristige Wartung.</p>
                 <button class="accordion-button" data-section-id="KostenNutzenAnalyse">
@@ -783,7 +1025,7 @@
             </section>
 
             
-            <section id="references" class="card">
+            <section id="references" class="card"> <!--Referenzen-->
                 <button class="accordion-button" data-section-id="referenzen">
                     <span>Referenzen</span>
                     <span class="icon"></span>
@@ -857,7 +1099,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // =======================================================
-    // TEIL 1: IHR BESTEHENDER CODE FÜR DIE DIAGRAMME (CHARTS)
+    // TEIL 1: DIAGRAMM-ERSTELLUNG (KOMBINIERT)
     // =======================================================
     const colors = {
         primary: '#003F5C',
@@ -955,6 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const parsedData = parseData(rawData);
 
+    // Initialisiere Diagramme
     new Chart(document.getElementById('qualityFlagChart'), {
         type: 'doughnut',
         data: {
@@ -1047,11 +1290,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
+    // NEUES DIAGRAMM aus Ablauf_1.html
+    const spikeCtx = document.getElementById('spikeChart').getContext('2d');
+    new Chart(spikeCtx, {
+        type: 'line',
+        data: {
+            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'],
+            datasets: [{
+                label: 'Trübung (FNU)',
+                data: [5.2, 5.5, 450.7, 5.8, 6.1, 5.9, 6.3],
+                borderColor: '#FF6361',
+                backgroundColor: 'rgba(255, 99, 97, 0.2)',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Trübung (FNU)'
+                    }
+                }
+            }
+        }
+    });
+
     // ====================================================================
-    // TEIL 2: FINALE VERSION DER KOMMENTAR-FUNKTIONALITÄT
+    // TEIL 2: INTERAKTIVITÄT (AKKORDEONS & KOMMENTARE)
     // ====================================================================
     
+    // Akkordeon-Logik für die neu eingefügte Sektion
+    const steps = document.querySelectorAll('.workflow-step .card');
+    steps.forEach(step => {
+        step.addEventListener('click', (e) => {
+            // Verhindert, dass der Klick auf den Kopieren-Button das Akkordeon schließt
+            if (e.target.tagName.toLowerCase() === 'button') {
+                return;
+            }
+            const content = step.querySelector('.details-content');
+            content.classList.toggle('open');
+        });
+    });
+
+    // Bestehende Akkordeon- und Kommentarlogik
     const API_URL = 'https://wasserdatenaufbereitung-lk-vg.fly.dev';
 
     function renderComment(comment) {
@@ -1084,12 +1384,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             container.innerHTML = ''; 
             if (data.comments && data.comments.length > 0) {
-                // Kommentare in aufsteigender Reihenfolge (älteste zuerst) anzeigen
                 data.comments.forEach(comment => {
                     container.innerHTML += renderComment(comment);
                 });
             } else {
-                // Ihr gewünschter Text, wenn keine Kommentare da sind
                 container.innerHTML = '<p class="text-sm text-[#7392A5]">Noch kein Kommentar vorhanden.</p>';
             }
         } catch (error) {
@@ -1134,10 +1432,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             form.reset(); 
             await fetchAndDisplayComments(sectionId); 
-            // Höhe des Akkordeons nach dem Hinzufügen des Kommentars neu berechnen.
             const accordionContent = form.closest('.accordion-content');
             if (accordionContent) {
-                 setTimeout(() => { // kleiner Timeout, damit der DOM aktualisieren kann
+                 setTimeout(() => {
                     accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
                 }, 50);
             }
@@ -1176,7 +1473,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 newButton.classList.add('active');
                 const content = newButton.nextElementSibling;
                 if (content) {
-                   // Warten, bis die Animation fast fertig ist, um die Höhe neu zu berechnen
                    setTimeout(() => {
                        content.style.maxHeight = content.scrollHeight + "px";
                    }, 250);
@@ -1189,12 +1485,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Das erste Accordion muss nach dem Setup der Event-Listener geöffnet werden.
     const firstAccordion = document.querySelector('.accordion-button');
     if (firstAccordion) {
         firstAccordion.click();
     }
 });
+
+// NEUE FUNKTION aus Ablauf_1.html
+function copyCode(button) {
+    const codeEl = document.getElementById('jsonCode');
+    const text = codeEl.innerText;
+    
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = text;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+
+    button.innerText = 'Kopiert!';
+    setTimeout(() => {
+        button.innerText = 'Kopieren';
+    }, 2000);
+}
 </script>
 
 </body>
