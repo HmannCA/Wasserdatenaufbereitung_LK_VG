@@ -120,7 +120,7 @@
             margin-bottom: 1rem;
         }
        .accordion-content h4 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: bold;
             color: #003F5C;
             margin-top: 1.25rem;
@@ -646,145 +646,132 @@
             </section>
 
             <section class="card">
-                <h2 class="text-3xl font-bold text-center mb-8">Kosten-Nutzen-Analyse: Eigenentwicklung vs. Softwarekauf</h2>
-                <p class="text-center text-[#366682] mb-10 max-w-3xl mx-auto">Die Entscheidung zwischen der Entwicklung einer maßgeschneiderten Lösung und dem Kauf einer Standardsoftware ist strategisch. Beide Wege haben spezifische Vor- und Nachteile in Bezug auf Kosten, Flexibilität und langfristige Wartung.</p>
+                <h2 class="text-2xl font-bold text-center mb-4">Kosten-Nutzen-Analyse: Eigenentwicklung vs. Softwarekauf</h2>
+                <p>Die Entscheidung zwischen der Entwicklung einer maßgeschneiderten Lösung und dem Kauf einer Standardsoftware ist strategisch. Beide Wege haben spezifische Vor- und Nachteile in Bezug auf Kosten, Flexibilität und langfristige Wartung.</p>
+                <button class="accordion-button" data-section-id="KostenNutzenAnalyse">
+                    <span>Kosten-Nutzen-Analyse anzeigen</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                    <p>Die Entscheidung zwischen der Entwicklung einer maßgeschneiderten Lösung und dem Kauf einer Standardsoftware ist strategisch. Beide Wege haben spezifische Vor- und Nachteile in Bezug auf Kosten, Flexibilität und langfristige Wartung.</p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <!-- Option 1: Eigenentwicklung -->
-                    <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
-                        <h3 class="text-2xl font-bold text-[#003F5C] mb-4">Option 1: Eigenentwicklung (Intern)</h3>
-                        <p class="text-[#366682] mb-6">Diese Option nutzt vorhandene Open-Source-Bibliotheken (z.B. Pandas in Python) und interne Personalressourcen. Die Logik für Validierung und Konsolidierung wird spezifisch für die Anforderungen des Projekts programmiert. Der Einsatz von KI-Entwicklungstools kann den Programmieraufwand signifikant reduzieren.</p>
-
-                        <h4 class="font-bold text-[#003F5C] mb-2">Geschätzter Kostenrahmen (Interner Satz: 300 €/Tag)</h4>
-                        <div class="overflow-x-auto mb-6">
-                            <table class="w-full text-left border-collapse">
-                                <thead class="bg-[#A0BCCB] text-white">
-                                    <tr>
-                                        <th class="p-2 rounded-tl-lg">Phase</th>
-                                        <th class="p-2">Aufwand (Tage)</th>
-                                        <th class="p-2 rounded-tr-lg">Kosten</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white">
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Konzeption & Architektur</td>
-                                        <td class="p-2">2 - 4</td>
-                                        <td class="p-2">600 - 1.200 €</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Entwicklung & Implementierung</td>
-                                        <td class="p-2">5 - 10</td>
-                                        <td class="p-2">1.500 - 3.000 €</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Test & Validierung</td>
-                                        <td class="p-2">3 - 5</td>
-                                        <td class="p-2">900 - 1.500 €</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Dokumentation & Deployment</td>
-                                        <td class="p-2">2 - 3</td>
-                                        <td class="p-2">600 - 900 €</td>
-                                    </tr>
-                                    <tr class="font-bold bg-gray-100">
-                                        <td class="p-2">Gesamt (inkl. 20% Puffer)</td>
-                                        <td class="p-2">14 - 26</td>
-                                        <td class="p-2">ca. 4.320 - 7.920 €</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div>
-                                <h5 class="font-semibold text-green-700">Vorteile:</h5>
-                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
-                                    <li><b>Maximale Flexibilität:</b> Regeln können jederzeit angepasst und erweitert werden.</li>
-                                    <li><b>Keine Lizenzkosten:</b> Vollständige Kontrolle über den Code und keine Abhängigkeit von Herstellern.</li>
-                                    <li><b>Wissensaufbau im Haus:</b> Die Expertise bleibt in der Organisation.</li>
-                                    <li><b>Geringere Gesamtkosten:</b> Deutlich günstiger bei Nutzung interner Ressourcen.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="font-semibold text-red-700">Nachteile:</h5>
-                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
-                                    <li><b>Bindet interne Ressourcen:</b> Mitarbeiter müssen für die Entwicklung abgestellt werden.</li>
-                                    <li><b>Volle Verantwortung:</b> Wartung, Fehlerbehebung und Weiterentwicklung liegen intern.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Option 2: Softwarekauf -->
-                    <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
-                        <h3 class="text-2xl font-bold text-[#003F5C] mb-4">Option 2: Einkauf kommerzieller Software</h3>
-                        <p class="text-[#366682] mb-6">Hier wird eine bestehende Softwarelösung für Datenqualitätsmanagement eingekauft. Diese bieten oft grafische Oberflächen zur Definition von Regeln und fertige Konnektoren, kommen aber mit wiederkehrenden Kosten und weniger Flexibilität.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         
-                        <h4 class="font-bold text-[#003F5C] mb-2">Beispielhafter Kostenrahmen (Marktüblich)</h4>
-                        <div class="overflow-x-auto mb-6">
-                            <table class="w-full text-left border-collapse">
-                                <thead class="bg-[#A0BCCB] text-white">
+                        <div style="background-color: rgb(249 250 251); border-radius: 0.5rem;border-color: rgb(229 231 235); border: 1px; padding: 1rem">
+                            <h3>Option 1: Eigenentwicklung (Intern)</h3>
+                            <p>Diese Option nutzt vorhandene Open-Source-Bibliotheken (z.B. Pandas in Python) und interne Personalressourcen. Die Logik für Validierung und Konsolidierung wird spezifisch für die Anforderungen des Projekts programmiert. Der Einsatz von KI-Entwicklungstools kann den Programmieraufwand signifikant reduzieren.</p>
+
+                            <h4>Geschätzter Kostenrahmen (Interner Satz: 300 €/Tag)</h4>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <th class="p-2 rounded-tl-lg">Anbieter / Produkt</th>
-                                        <th class="p-2">Kostenrahmen (1. Jahr)</th>
-                                        <th class="p-2 rounded-tr-lg">Link (Illustrativ)</th>
+                                        <th>Phase</th>
+                                        <th>Aufwand (Tage)</th>
+                                        <th>Kosten</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white">
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Talend Data Quality</td>
-                                        <td class="p-2">ab 15.000 - 40.000 €</td>
-                                        <td class="p-2"><a href="https://www.talend.com/products/data-quality/" target="_blank" class="text-blue-600 hover:underline">Website</a></td>
+                                <tbody>
+                                    <tr>
+                                        <td>Konzeption & Architektur</td>
+                                        <td>2 - 4</td>
+                                        <td>600 - 1.200 €</td>
                                     </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Informatica DQ</td>
-                                        <td class="p-2">ab 20.000 - 50.000 €+</td>
-                                        <td class="p-2"><a href="https://www.informatica.com/products/data-quality.html" target="_blank" class="text-blue-600 hover:underline">Website</a></td>
+                                    <tr>
+                                        <td>Entwicklung & Implementierung</td>
+                                        <td>5 - 10</td>
+                                        <td>1.500 - 3.000 €</td>
                                     </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="p-2 font-semibold">Azure Data Factory</td>
-                                        <td class="p-2">Pay-as-you-go (variabel)</td>
-                                        <td class="p-2"><a href="https://azure.microsoft.com/de-de/products/data-factory" target="_blank" class="text-blue-600 hover:underline">Website</a></td>
+                                    <tr>
+                                        <td>Test & Validierung</td>
+                                        <td>3 - 5</td>
+                                        <td>900 - 1.500 €</td>
                                     </tr>
-                                    <tr class="font-bold bg-gray-100">
-                                        <td class="p-2">Gesamtkosten (marktüblich)</td>
-                                        <td class="p-2" colspan="2">ca. 8.000 - 40.000 €+</td>
+                                    <tr>
+                                        <td>Dokumentation & Deployment</td>
+                                        <td>2 - 3</td>
+                                        <td>600 - 900 €</td>
+                                    </tr>
+                                    <tr class="font-bold">
+                                        <td>Gesamt (inkl. 20% Puffer)</td>
+                                        <td>14 - 26</td>
+                                        <td>ca. 4.320 - 7.920 €</td>
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <h5 class="font-semibold text-green-700 mt-6">Vorteile:</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                                <li><b>Maximale Flexibilität:</b> Regeln können jederzeit angepasst und erweitert werden.</li>
+                                <li><b>Keine Lizenzkosten:</b> Vollständige Kontrolle über den Code und keine Abhängigkeit von Herstellern.</li>
+                                <li><b>Wissensaufbau im Haus:</b> Die Expertise bleibt in der Organisation.</li>
+                                <li><b>Geringere Gesamtkosten:</b> Deutlich günstiger bei Nutzung interner Ressourcen.</li>
+                            </ul>
+                            <h5 class="font-semibold text-red-700 mt-4">Nachteile:</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                                <li><b>Bindet interne Ressourcen:</b> Mitarbeiter müssen für die Entwicklung abgestellt werden.</li>
+                                <li><b>Volle Verantwortung:</b> Wartung, Fehlerbehebung und Weiterentwicklung liegen intern.</li>
+                            </ul>
                         </div>
 
-                        <div class="space-y-4">
-                            <div>
-                                <h5 class="font-semibold text-green-700">Vorteile:</h5>
-                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
-                                    <li><b>Schnellere Inbetriebnahme:</b> Die Grundfunktionalität ist sofort verfügbar.</li>
-                                    <li><b>Hersteller-Support:</b> Unterstützung und Wartung durch den Anbieter.</li>
-                                    <li><b>Bewährte Lösung:</b> Oft im Markt etabliert und getestet.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 class="font-semibold text-red-700">Nachteile:</h5>
-                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
-                                    <li><b>Hohe und wiederkehrende Kosten:</b> Lizenz- und Wartungsgebühren.</li>
-                                    <li><b>Geringere Flexibilität:</b> "Vendor-Lock-in", Anpassungen sind oft teuer oder unmöglich.</li>
-                                    <li><b>Blackbox-Effekt:</b> Die interne Funktionsweise ist oft nicht transparent.</li>
-                                </ul>
-                                
-                            </div>
+                        <div style="background-color: rgb(249 250 251); border-radius: 0.5rem; border-color: rgb(229 231 235); border: 1px; padding: 1rem">
+                            <h3>Option 2: Einkauf kommerzieller Software</h3>
+                            <p>Hier wird eine bestehende Softwarelösung für Datenqualitätsmanagement eingekauft. Diese bieten oft grafische Oberflächen zur Definition von Regeln und fertige Konnektoren, kommen aber mit wiederkehrenden Kosten und weniger Flexibilität.</p>
+                            
+                            <h4>Beispielhafter Kostenrahmen (Marktüblich)</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Anbieter / Produkt</th>
+                                        <th>Kostenrahmen (1. Jahr)</th>
+                                        <th>Link (Illustrativ)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Talend Data Quality</td>
+                                        <td>ab 15.000 - 40.000 €</td>
+                                        <td><a href="https://www.talend.com/products/data-quality/" target="_blank">Website</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Informatica DQ</td>
+                                        <td>ab 20.000 - 50.000 €+</td>
+                                        <td><a href="https://www.informatica.com/products/data-quality.html" target="_blank">Website</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Azure Data Factory</td>
+                                        <td>Pay-as-you-go (variabel)</td>
+                                        <td><a href="https://azure.microsoft.com/de-de/products/data-factory" target="_blank">Website</a></td>
+                                    </tr>
+                                    <tr class="font-bold">
+                                        <td>Gesamtkosten (marktüblich)</td>
+                                        <td colspan="2">ca. 8.000 - 40.000 €+</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h5 class="font-semibold text-green-700 mt-6">Vorteile:</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                                <li><b>Schnellere Inbetriebnahme:</b> Die Grundfunktionalität ist sofort verfügbar.</li>
+                                <li><b>Hersteller-Support:</b> Unterstützung und Wartung durch den Anbieter.</li>
+                                <li><b>Bewährte Lösung:</b> Oft im Markt etabliert und getestet.</li>
+                            </ul>
+                            <h5 class="font-semibold text-red-700 mt-4">Nachteile:</h5>
+                            <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                                <li><b>Hohe und wiederkehrende Kosten:</b> Lizenz- und Wartungsgebühren.</li>
+                                <li><b>Geringere Flexibilität:</b> "Vendor-Lock-in", Anpassungen sind oft teuer oder unmöglich.</li>
+                                <li><b>Blackbox-Effekt:</b> Die interne Funktionsweise ist oft nicht transparent.</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="mt-10 text-center p-6 bg-[#E1EBF1] rounded-lg">
-                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Empfehlung</h3>
-                    <p class="text-[#366682] max-w-2xl mx-auto">Für das vorliegende Projekt ist die <b>Eigenentwicklung die klar zu bevorzugende Option</b>*. Die Anforderungen sind präzise definiert und können mit Standard-Bibliotheken effizient umgesetzt werden. Die finanziellen Einsparungen sind erheblich, und die geschaffene Lösung ist perfekt auf den Anwendungsfall zugeschnitten, flexibel und zukunftssicher.</p>
+                    <div class="mt-10 text-center p-6 bg-[#E1EBF1] rounded-lg">
+                        <h3>Empfehlung</h3>
+                        <p>Für das vorliegende Projekt ist die <b>Eigenentwicklung die klar zu bevorzugende Option</b>*. Die Anforderungen sind präzise definiert und können mit Standard-Bibliotheken effizient umgesetzt werden. Die finanziellen Einsparungen sind erheblich, und die geschaffene Lösung ist perfekt auf den Anwendungsfall zugeschnitten, flexibel und zukunftssicher.</p>
+                    </div>
                     
-                </div>
-                <div class="comments-section">
+                    <div class="comments-section">
                         <h4 class="text-xl font-bold mb-4">Kommentare</h4>
-                        <div id="comments-list-KostenNutzenAnalyse">
-                            </div>
+                        <div id="comments-list-KostenNutzenAnalyse"></div>
                         <form id="comment-form-KostenNutzenAnalyse" class="comment-form">
                             <h5 class="font-semibold mb-2">Ihr Kommentar</h5>
                             <input type="text" name="author" placeholder="Ihr Name (optional)" class="block">
@@ -792,6 +779,7 @@
                             <button type="submit">Senden</button>
                         </form>
                     </div>
+                </div>
             </section>
 
             
