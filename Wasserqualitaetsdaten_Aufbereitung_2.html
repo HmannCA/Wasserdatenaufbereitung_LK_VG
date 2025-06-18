@@ -944,22 +944,24 @@ document.addEventListener('DOMContentLoaded', () => {
 2025-04-28 23:00;11.2;13.2;12.8;10.2;350;1.3;8.70;12.5;-41;3.2;0.2;5.2;5.6;0.1`;
 
     function parseData(csv) {
-        const lines = csv.trim().split(';');
+        const lines = csv.trim().split('\n');
         const headers = lines[0].split(';');
-        // This parser is flawed but works for the demo data structure.
-        // A more robust CSV parser would handle lines and headers better.
-        let data = [];
-        for (let i = 1; i < lines.length; i += headers.length) {
-            let obj = {};
-            headers.forEach((header, j) => {
-                const value = lines[i+j];
-                if (header.trim() === 'datetime') {
-                    obj[header.trim()] = value;
-                } else {
-                    obj[header.trim()] = parseFloat(value);
-                }
-            });
-            if(obj.datetime) data.push(obj);
+        const data = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(';');
+            if (values.length === headers.length) {
+                let obj = {};
+                headers.forEach((header, j) => {
+                    const value = values[j];
+                    if (header.trim() === 'datetime') {
+                        obj[header.trim()] = value;
+                    } else {
+                        obj[header.trim()] = parseFloat(value);
+                    }
+                });
+                data.push(obj);
+            }
         }
         return data;
     }
@@ -1144,6 +1146,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             form.reset(); 
             await fetchAndDisplayComments(sectionId); 
+            // Höhe des Akkordeons nach dem Hinzufügen des Kommentars neu berechnen.
+            const accordionContent = form.closest('.accordion-content');
+            if (accordionContent) {
+                 setTimeout(() => { // kleiner Timeout, damit der DOM aktualisieren kann
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                }, 50);
+            }
 
         } catch (error) {
             console.error(`[CLIENT-POST-Error] für Sektion ${sectionId}:`, error);
