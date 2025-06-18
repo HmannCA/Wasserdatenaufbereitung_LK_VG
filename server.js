@@ -56,7 +56,7 @@ app.post('/api/comments', (req, res) => {
 
 
 // Server starten
-app.listen(PORT, () => {
-    console.log(`Server läuft auf http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server läuft auf Port ${PORT}`);
     console.log(`Ihre Infografik ist jetzt unter http://localhost:${PORT}/Wasserqualitaetsdaten_Aufbereitung_2.html erreichbar.`);
 });
