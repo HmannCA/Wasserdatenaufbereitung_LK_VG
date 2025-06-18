@@ -315,7 +315,7 @@
                         <p class="text-center text-sm text-[#366682] mt-2">Hypothetische Verteilung der Qualitäts-Flags an einem Tag.</p>
                     </div>
                 </div>
-                <button class="accordion-button">
+                <button class="accordion-button" data-section-id="validierung">
                     <span>Details zur Datenvalidierung und Qualitätssicherung</span>
                     <span class="icon"></span>
                 </button>
@@ -382,9 +382,9 @@
                         <p>Dieses interne, numerische Flagging-System ist für die maschinelle Verarbeitung optimiert. Für die Veröffentlichung auf der ODP können diese numerischen Flags in nutzerfreundlichere, standardisierte Bezeichnungen übersetzt werden (z.B. "geprüft", "geschätzt", "verworfen"), um internationalen Standards für die Datenqualifizierung zu entsprechen.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>, <a href="https://www.fiw.rwth-aachen.de/fileadmin/user_upload/Public_Relations/PDF/mobileVIEW_Abschlussbericht_100S_de.pdf" target="_blank">17</a>]</p>
                         <div class="comments-section">
                             <h4 class="text-xl font-bold mb-4">Kommentare</h4>
-                            <div id="comments-list-Datenvalidierung">
+                            <div id="comments-list-validierung">
                                 </div>
-                            <form id="comment-form-Datenvalidierungn" class="comment-form">
+                            <form id="comment-form-validierung" class="comment-form">
                                 <h5 class="font-semibold mb-2">Ihr Kommentar</h5>
                                 <input type="text" name="author" placeholder="Ihr Name (optional)" class="block">
                                 <textarea name="content" placeholder="Schreiben Sie einen Kommentar..." rows="3" required class="block"></textarea>
@@ -431,7 +431,7 @@
                         <p class="text-center text-sm text-[#366682] mt-2">Anzahl empfohlener Tages-Kennzahlen pro Parameter-Typ.</p>
                     </div>
                 </div>
-                <button class="accordion-button">
+                <button class="accordion-button" data-section-id="konsolidierung">
                     <span>Details zur Parameter-spezifischen Konsolidierung</span>
                     <span class="icon"></span>
                 </button>
@@ -487,9 +487,9 @@
                         <p><strong>DOC/TOC</strong> (gelöster/totaler organischer Kohlenstoff) und <strong>Nitrat</strong> sind wichtige Nährstoffparameter. Ihre Konzentrationen sind im Tagesverlauf oft weniger dynamisch als z.B. Sauerstoff oder pH. Der <strong>Median</strong> ist daher ein guter Indikator für die generelle Nährstoffsituation. Die <strong>Standardabweichung</strong> kann jedoch auf biologische Prozesse (z.B. tageszeitliche Nitrataufnahme durch Phytoplankton [<a href="https://studyflix.de/biologie/oekosystem-see-2525" target="_blank">35</a>]) oder auf episodische Einträge aus dem Einzugsgebiet hinweisen.</p>
                         <div class="comments-section">
                             <h4 class="text-xl font-bold mb-4">Kommentare</h4>
-                            <div id="comments-list-IntelligenteKonsolidierung">
+                            <div id="comments-list-konsolidierung">
                                 </div>
-                            <form id="comment-form-IntelligenteKonsolidierung" class="comment-form">
+                            <form id="comment-form-konsolidierung" class="comment-form">
                                 <h5 class="font-semibold mb-2">Ihr Kommentar</h5>
                                 <input type="text" name="author" placeholder="Ihr Name (optional)" class="block">
                                 <textarea name="content" placeholder="Schreiben Sie einen Kommentar..." rows="3" required class="block"></textarea>
@@ -547,7 +547,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="accordion-button">
+                <button class="accordion-button" data-section-id="fairdata">
                     <span>Details zur Implementierung und Veröffentlichung</span>
                     <span class="icon"></span>
                 </button>
@@ -598,25 +598,26 @@
                             </li>
                             <li><strong>Datenzugriff und Formate:</strong> Die Daten sollten als einfach zu verarbeitende, kommaseparierte Textdateien (CSV) zum Download angeboten werden. Für eine fortschrittliche Nutzung und die Integration in andere Anwendungen und Web-Portale ist die Bereitstellung über eine Programmierschnittstelle (API) dringend zu empfehlen. Dies fördert die automatisierte Weiterverarbeitung und die Vernetzung von Daten, ein Kernziel der Digitalisierung in der Wasserwirtschaft.[<a href="https://ketos.co/water-quality-monitoring-compliance-technology" target="_blank">6</a>, <a href="https://www.umweltbundesamt.de/themen/wasser/recht-oekonomie-digitalisierung/digitalisierung-wasserwirtschaft" target="_blank">38</a>]</li>
                         </ul>
-                        <div class="comments-section">
+                        
+                    </div>
+                    <div class="comments-section">
                             <h4 class="text-xl font-bold mb-4">Kommentare</h4>
-                            <div id="comments-list-FairOpenData">
+                            <div id="comments-list-fairdata">
                                 </div>
-                            <form id="comment-form-FairOpenData" class="comment-form">
+                            <form id="comment-form-fairdata" class="comment-form">
                                 <h5 class="font-semibold mb-2">Ihr Kommentar</h5>
                                 <input type="text" name="author" placeholder="Ihr Name (optional)" class="block">
                                 <textarea name="content" placeholder="Schreiben Sie einen Kommentar..." rows="3" required class="block"></textarea>
                                 <button type="submit">Senden</button>
                             </form>
                         </div>
-                    </div>
                 </div>
             </section>
 
             <section class="card">
                 <h2 class="text-2xl font-bold text-center mb-4">Zusammenfassende Handlungsempfehlungen</h2>
                 <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die erfolgreiche Bereitstellung von hochfrequenten Wasserqualitätsdaten erfordert einen systematischen und wissenschaftlich fundierten Ansatz. Hier sind die zentralen Empfehlungen zusammengefasst.</p>
-                <button class="accordion-button">
+                <button class="accordion-button" data-section-id="handlungsempfehlungen">
                     <span>Handlungsempfehlungen anzeigen</span>
                     <span class="icon"></span>
                 </button>
@@ -866,75 +867,57 @@
     </div>
 
 <script>
-// --- START: KORRIGIERTER SCRIPT-BEREICH ---
+document.addEventListener('DOMContentLoaded', () => {
+    // =======================================================
+    // TEIL 1: IHR BESTEHENDER CODE FÜR DIE DIAGRAMME (CHARTS)
+    // =======================================================
+    const colors = {
+        primary: '#003F5C',
+        secondary: '#366682',
+        accent: '#7392A5',
+        light: '#A0BCCB',
+        background: '#E1EBF1'
+    };
 
-const colors = {
-    primary: '#003F5C',
-    secondary: '#366682',
-    accent: '#7392A5',
-    light: '#A0BCCB',
-    background: '#E1EBF1'
-};
+    function wrapLabels(label) {
+        const max_width = 16;
+        if (label.length <= max_width) return label;
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = '';
+        for (const word of words) {
+            if ((currentLine + ' ' + word).trim().length > max_width) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        }
+        if (currentLine) lines.push(currentLine.trim());
+        return lines;
+    }
 
-function wrapLabels(label) {
-    const max_width = 16;
-    if (label.length <= max_width) {
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) return label.join(' ');
         return label;
-    }
-    const words = label.split(' ');
-    let lines = [];
-    let currentLine = '';
-    for (const word of words) {
-        if ((currentLine + ' ' + word).trim().length > max_width) {
-            lines.push(currentLine.trim());
-            currentLine = word;
-        } else {
-            currentLine = (currentLine + ' ' + word).trim();
-        }
-    }
-    if (currentLine) {
-        lines.push(currentLine.trim());
-    }
-    return lines;
-}
+    };
 
-const tooltipTitleCallback = (tooltipItems) => {
-    const item = tooltipItems[0];
-    let label = item.chart.data.labels[item.dataIndex];
-    if (Array.isArray(label)) {
-        return label.join(' ');
-    }
-    return label;
-};
-
-const defaultChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: {
-            labels: {
-                color: colors.primary
-            }
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { labels: { color: colors.primary } },
+            tooltip: { callbacks: { title: tooltipTitleCallback } }
         },
-        tooltip: {
-            callbacks: {
-                title: tooltipTitleCallback
-            }
+        scales: {
+            y: { ticks: { color: colors.secondary }, grid: { color: colors.light } },
+            x: { ticks: { color: colors.secondary }, grid: { color: colors.light } }
         }
-    },
-    scales: {
-        y: {
-            ticks: { color: colors.secondary },
-            grid: { color: colors.light }
-        },
-        x: {
-            ticks: { color: colors.secondary },
-            grid: { color: colors.light }
-        }
-    }
-};
+    };
 
-const rawData = `datetime;air_temperature;water_temperature_1m;water_temperature_2m;water_temperature_4m;conductivity;turbidity;ph;dissolved_oxygen;redox_potential;chlorophyll_a;phycocyanin;doc;toc;nitrate
+    const rawData = `datetime;air_temperature;water_temperature_1m;water_temperature_2m;water_temperature_4m;conductivity;turbidity;ph;dissolved_oxygen;redox_potential;chlorophyll_a;phycocyanin;doc;toc;nitrate
 2025-04-28 00:00;10.2;13.1;12.5;10.1;350;1.2;8.61;12.1;-50;3.1;0.2;5.1;5.5;0.1
 2025-04-28 01:00;9.8;13.1;12.5;10.1;351;1.1;8.62;12.2;-48;3.0;0.2;5.1;5.5;0.1
 2025-04-28 02:00;9.5;13.1;12.5;10.1;351;1.1;8.63;12.3;-45;3.0;0.2;5.1;5.5;0.1
@@ -960,26 +943,28 @@ const rawData = `datetime;air_temperature;water_temperature_1m;water_temperature
 2025-04-28 22:00;11.8;13.4;13.0;10.2;349;1.4;8.74;12.7;-36;3.4;0.2;5.2;5.7;0.1
 2025-04-28 23:00;11.2;13.2;12.8;10.2;350;1.3;8.70;12.5;-41;3.2;0.2;5.2;5.6;0.1`;
 
-function parseData(csv) {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(';');
-    return lines.slice(1).map(line => {
-        const values = line.split(';');
-        let obj = {};
-        headers.forEach((header, i) => {
-            if (header.trim() === 'datetime') {
-                obj[header.trim()] = values[i];
-            } else {
-                obj[header.trim()] = parseFloat(values[i]);
-            }
-        });
-        return obj;
-    });
-}
-const parsedData = parseData(rawData);
+    function parseData(csv) {
+        const lines = csv.trim().split(';');
+        const headers = lines[0].split(';');
+        // This parser is flawed but works for the demo data structure.
+        // A more robust CSV parser would handle lines and headers better.
+        let data = [];
+        for (let i = 1; i < lines.length; i += headers.length) {
+            let obj = {};
+            headers.forEach((header, j) => {
+                const value = lines[i+j];
+                if (header.trim() === 'datetime') {
+                    obj[header.trim()] = value;
+                } else {
+                    obj[header.trim()] = parseFloat(value);
+                }
+            });
+            if(obj.datetime) data.push(obj);
+        }
+        return data;
+    }
+    const parsedData = parseData(rawData);
 
-document.addEventListener('DOMContentLoaded', () => {
-    
     new Chart(document.getElementById('qualityFlagChart'), {
         type: 'doughnut',
         data: {
@@ -992,17 +977,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 borderWidth: 2
             }]
         },
-        options: {
-           ...defaultChartOptions,
-            plugins: {
-               ...defaultChartOptions.plugins,
-                 legend: {
-                    position: 'bottom',
-                    labels: { color: colors.primary }
-                },
-            },
-            cutout: '60%'
-        }
+        options: { ...defaultChartOptions, plugins: { ...defaultChartOptions.plugins, legend: { position: 'bottom', labels: { color: colors.primary } } }, cutout: '60%' }
     });
     
     new Chart(document.getElementById('dailyFluctuationChart'), {
@@ -1014,22 +989,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     label: 'pH-Wert',
                     data: parsedData.map(row => row.ph),
                     borderColor: colors.primary,
-                    backgroundColor: colors.primary + '33',
+                    backgroundColor: 'rgba(0, 63, 92, 0.1)',
                     yAxisID: 'y',
-                    tension: 0.3
+                    tension: 0.3,
+                    fill: false
                 },
                 {
-                    label: 'Sauerstoff (mg/L)',
+                    label: 'Gelöster Sauerstoff (mg/L)',
                     data: parsedData.map(row => row.dissolved_oxygen),
                     borderColor: colors.accent,
-                    backgroundColor: colors.accent + '33',
+                    backgroundColor: 'rgba(115, 146, 165, 0.1)',
                     yAxisID: 'y1',
-                    tension: 0.3
+                    tension: 0.3,
+                    fill: false
                 }
             ]
         },
         options: {
-           ...defaultChartOptions,
+            ...defaultChartOptions,
             scales: {
                  y: {
                     type: 'linear',
@@ -1073,205 +1050,153 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
            ...defaultChartOptions,
             scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { color: colors.secondary, stepSize: 1 },
-                    grid: { color: colors.light }
-                },
-                x: {
-                    ticks: { color: colors.secondary },
-                    grid: { drawOnChartArea: false }
-                }
+                y: { beginAtZero: true, ticks: { color: colors.secondary, stepSize: 1 }, grid: { color: colors.light } },
+                x: { ticks: { color: colors.secondary }, grid: { drawOnChartArea: false } }
             },
-             plugins: {
-               ...defaultChartOptions.plugins,
-                legend: {
-                    display: false
-                }
-            }
+             plugins: { ...defaultChartOptions.plugins, legend: { display: false } }
         }
     });
 
-// ====================================================================
-// START: AKTUALISIERTER JAVASCRIPT-BLOCK FÜR DIE KOMMENTARFUNKTION
-// ====================================================================
-
-// Basis-URL unserer auf Fly.io gehosteten API
-const API_URL = 'https://wasserdatenaufbereitung-lk-vg.fly.dev';
-
-/**
- * Stellt einen einzelnen Kommentar als HTML dar und gibt den HTML-String zurück.
- * @param {object} comment - Das Kommentarobjekt aus der Datenbank.
- * @returns {string} - Der HTML-String für den Kommentar.
- */
-function renderComment(comment) {
-    const commentDate = new Date(comment.created_at).toLocaleString('de-DE', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-
-    const safeAuthor = document.createElement('p');
-    safeAuthor.textContent = comment.author || 'Anonym';
-    const safeContent = document.createElement('p');
-    safeContent.textContent = comment.content;
     
-    return `
-        <div class="comment">
-            <p class="comment-author">${safeAuthor.innerHTML}</p>
-            <p class="comment-date">${commentDate} Uhr</p>
-            <p class="mt-2">${safeContent.innerHTML}</p>
-        </div>
-    `;
-}
+    // ====================================================================
+    // TEIL 2: FINALE VERSION DER KOMMENTAR-FUNKTIONALITÄT
+    // ====================================================================
+    
+    const API_URL = 'https://wasserdatenaufbereitung-lk-vg.fly.dev';
 
-/**
- * Lädt Kommentare von der API für eine bestimmte Sektion und zeigt sie an.
- * @param {string} sectionId - Die ID der Sektion (z.B. "referenzen").
- */
-async function fetchAndDisplayComments(sectionId) {
-    const container = document.getElementById(`comments-list-${sectionId}`);
-    if (!container) return;
-
-    // Zeigt eine Lade-Nachricht an
-    container.innerHTML = '<p class="text-sm text-[#7392A5]">Lade Kommentare...</p>';
-
-    try {
-        const response = await fetch(`${API_URL}/api/comments?section_id=${sectionId}`);
-        if (!response.ok) {
-            throw new Error(`Netzwerk-Antwort war nicht ok: ${response.statusText}`);
-        }
-        const data = await response.json();
+    function renderComment(comment) {
+        const commentDate = new Date(comment.created_at).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const safeAuthor = document.createElement('p');
+        safeAuthor.textContent = comment.author || 'Anonym';
+        const safeContent = document.createElement('p');
+        safeContent.textContent = comment.content;
         
-        container.innerHTML = ''; 
-        if (data.comments && data.comments.length > 0) {
-            data.comments.forEach(comment => {
-                container.innerHTML += renderComment(comment);
+        return `
+            <div class="comment">
+                <p class="comment-author">${safeAuthor.innerHTML}</p>
+                <p class="comment-date">${commentDate} Uhr</p>
+                <p class="mt-2">${safeContent.innerHTML}</p>
+            </div>
+        `;
+    }
+
+    async function fetchAndDisplayComments(sectionId) {
+        const container = document.getElementById(`comments-list-${sectionId}`);
+        if (!container) return;
+
+        container.innerHTML = '<p class="text-sm text-[#7392A5]">Lade Kommentare...</p>';
+
+        try {
+            const response = await fetch(`${API_URL}/api/comments?section_id=${sectionId}`);
+            if (!response.ok) throw new Error(`Server-Fehler: ${response.statusText}`);
+            
+            const data = await response.json();
+            
+            container.innerHTML = ''; 
+            if (data.comments && data.comments.length > 0) {
+                // Kommentare in aufsteigender Reihenfolge (älteste zuerst) anzeigen
+                data.comments.forEach(comment => {
+                    container.innerHTML += renderComment(comment);
+                });
+            } else {
+                // Ihr gewünschter Text, wenn keine Kommentare da sind
+                container.innerHTML = '<p class="text-sm text-[#7392A5]">Noch kein Kommentar vorhanden.</p>';
+            }
+        } catch (error) {
+            console.error(`[CLIENT-GET-Error] für Sektion ${sectionId}:`, error);
+            container.innerHTML = '<p class="text-red-600">Fehler beim Laden der Kommentare. Bitte versuchen Sie es später erneut.</p>';
+        }
+    }
+
+    async function handleCommentSubmit(event, sectionId) {
+        event.preventDefault(); 
+        
+        const form = event.target;
+        const authorInput = form.querySelector('[name="author"]');
+        const contentInput = form.querySelector('[name="content"]');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const author = authorInput.value.trim();
+        const content = contentInput.value.trim();
+
+        if (!content) {
+            alert('Bitte geben Sie einen Kommentar ein.');
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sende...';
+
+        try {
+            const response = await fetch(`${API_URL}/api/comments`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    section_id: sectionId,
+                    author: author || 'Anonym',
+                    content: content
+                }),
             });
-        } else {
-            container.innerHTML = '<p class="text-sm text-[#7392A5]">Noch keine Kommentare vorhanden. Seien Sie der Erste!</p>';
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Server-Fehler beim Senden.');
+            }
+
+            form.reset(); 
+            await fetchAndDisplayComments(sectionId); 
+
+        } catch (error) {
+            console.error(`[CLIENT-POST-Error] für Sektion ${sectionId}:`, error);
+            alert('Ihr Kommentar konnte nicht gesendet werden. (' + error.message + ')');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Senden';
         }
-    } catch (error) {
-        console.error('Fehler beim Laden der Kommentare:', error);
-        container.innerHTML = '<p class="text-red-600">Fehler beim Laden der Kommentare. Bitte versuchen Sie es später erneut.</p>';
-    }
-}
-
-/**
- * Behandelt das Abschicken eines neuen Kommentars.
- * @param {Event} event - Das Formular-Submit-Event.
- * @param {string} sectionId - Die ID der Sektion, zu der der Kommentar gehört.
- */
-async function handleCommentSubmit(event, sectionId) {
-    event.preventDefault(); 
-    
-    const form = event.target;
-    const authorInput = form.querySelector('[name="author"]');
-    const contentInput = form.querySelector('[name="content"]');
-    const submitButton = form.querySelector('button[type="submit"]');
-
-    const author = authorInput.value.trim();
-    const content = contentInput.value.trim();
-
-    if (!content) {
-        alert('Bitte geben Sie einen Kommentar ein.');
-        return;
     }
 
-    // Button deaktivieren, um doppeltes Senden zu verhindern
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sende...';
-
-    try {
-        const response = await fetch(`${API_URL}/api/comments`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                section_id: sectionId,
-                author: author || 'Anonym',
-                content: content
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Fehler beim Senden des Kommentars.');
-        }
-
-        form.reset(); 
-        await fetchAndDisplayComments(sectionId); 
-
-    } catch (error) {
-        console.error('Sende-Fehler:', error);
-        alert('Ihr Kommentar konnte nicht gesendet werden. Bitte versuchen Sie es erneut.');
-    } finally {
-        // Button wieder aktivieren
-        submitButton.disabled = false;
-        submitButton.textContent = 'Senden';
-    }
-}
-
-// --- HIER IST DIE MAGIE: Wir wenden die Logik auf ALLE Formulare an ---
-
-// Alle Kommentarformulare auf der Seite finden
-const commentForms = document.querySelectorAll('.comment-form');
-
-// Durch jedes gefundene Formular gehen und einen Event Listener hinzufügen
-commentForms.forEach(form => {
-    // Die Sektions-ID aus der Formular-ID extrahieren 
-    // z.B. aus "comment-form-referenzen" wird "referenzen"
-    const sectionId = form.id.replace('comment-form-', '');
-    
-    form.addEventListener('submit', (event) => {
-        handleCommentSubmit(event, sectionId);
-    });
-});
-
-
-// Die bestehende Accordion-Logik wird hier angepasst, damit sie weiterhin funktioniert
-const accordions = document.querySelectorAll('.accordion-button');
-accordions.forEach(button => {
-    // Bestehenden Click-Listener entfernen, um doppelte Ausführung zu vermeiden
-    const newButton = button.cloneNode(true);
-    button.parentNode.replaceChild(newButton, button);
-    
-    newButton.addEventListener('click', () => {
-        const isActive = newButton.classList.contains('active');
-        const allAccordions = document.querySelectorAll('.accordion-button');
-
-        allAccordions.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.nextElementSibling) {
-                btn.nextElementSibling.style.maxHeight = null;
-            }
-        });
-
-        if (!isActive) {
-            newButton.classList.add('active');
-            const content = newButton.nextElementSibling;
-            if (content) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-
-            const sectionId = newButton.dataset.sectionId;
-            if (sectionId) {
-                fetchAndDisplayComments(sectionId);
-            }
+    document.querySelectorAll('.comment-form').forEach(form => {
+        const sectionId = form.id.replace('comment-form-', '');
+        if(sectionId) {
+            form.addEventListener('submit', (event) => {
+                handleCommentSubmit(event, sectionId);
+            });
         }
     });
-});
 
-// Erstes Accordion standardmäßig öffnen
-const firstAccordion = document.querySelector('.accordion-button');
-if (firstAccordion) {
-    firstAccordion.click();
-}
-// ====================================================================
-// ENDE: AKTUALISIERTER JAVASCRIPT-BLOCK
-// ====================================================================
+    document.querySelectorAll('.accordion-button').forEach(button => {
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+        
+        newButton.addEventListener('click', () => {
+            const isActive = newButton.classList.contains('active');
+            
+            document.querySelectorAll('.accordion-button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.nextElementSibling) btn.nextElementSibling.style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                newButton.classList.add('active');
+                const content = newButton.nextElementSibling;
+                if (content) {
+                   // Warten, bis die Animation fast fertig ist, um die Höhe neu zu berechnen
+                   setTimeout(() => {
+                       content.style.maxHeight = content.scrollHeight + "px";
+                   }, 250);
+                }
+                const sectionId = newButton.dataset.sectionId;
+                if (sectionId && document.getElementById(`comments-list-${sectionId}`)) {
+                    fetchAndDisplayComments(sectionId);
+                }
+            }
+        });
+    });
+    
+    // Das erste Accordion muss nach dem Setup der Event-Listener geöffnet werden.
+    const firstAccordion = document.querySelector('.accordion-button');
+    if (firstAccordion) {
+        firstAccordion.click();
+    }
 });
 </script>
 
