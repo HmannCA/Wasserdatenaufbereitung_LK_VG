@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografik: Aufbereitung von Wasserqualitätsdaten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E1EBF1;
+            color: #003F5C;
+        }
+       .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 800px;
+        }
+        @media (min-width: 768px) {
+           .chart-container {
+                height: 400px;
+            }
+        }
+       .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+       .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+       .flow-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #A0BCCB;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            color: #003F5C;
+            font-weight: 600;
+            min-height: 80px;
+        }
+       .flow-arrow {
+            font-size: 2rem;
+            color: #7392A5;
+            margin: 0 1rem;
+            display: none;
+        }
+        @media (min-width: 768px) {
+           .flow-arrow {
+                display: block;
+            }
+        }
+         @media (max-width: 767px) {
+           .flow-arrow-mobile {
+                display: block;
+                transform: rotate(90deg);
+                 margin: 1rem 0;
+            }
+        }
+       .accordion-button {
+            background-color: #f0f5f9;
+            color: #366682;
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+       .accordion-button:hover,.accordion-button.active {
+            background-color: #d9e2e9;
+        }
+       .accordion-button.icon::before {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+       .accordion-button.active.icon::before {
+            content: '−';
+        }
+       .accordion-content {
+            padding: 0 1rem;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-left: 1px solid #d9e2e9;
+            border-right: 1px solid #d9e2e9;
+            border-bottom: 1px solid #d9e2e9;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+       .accordion-content-inner {
+            padding: 1.5rem 0;
+        }
+       .accordion-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #003F5C;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+       .accordion-content h4 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #003F5C;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+       .accordion-content p,.accordion-content li {
+            color: #366682;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+       .accordion-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+       .accordion-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+       .accordion-content th,.accordion-content td {
+            border: 1px solid #A0BCCB;
+            padding: 0.75rem;
+            text-align: left;
+        }
+       .accordion-content th {
+            background-color: #E1EBF1;
+            font-weight: 600;
+        }
+        /* Style for reference links */
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .reference-list li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003F5C] mb-4">Von Rohdaten zu wertvoller Information</h1>
+            <p class="text-lg md:text-xl text-[#366682] max-w-3xl mx-auto">Ein interaktiver Leitfaden des Landkreises Vorpommern-Greifswald zur intelligenten Aufbereitung von Wasserqualitätsdaten für die Open-Data-Plattform.</p>
+        </header>
+
+        <section class="mb-12 md:mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center">
+                    <span class="text-4xl">🔬</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 text-[#003F5C]">Forschung</h3>
+                    <p class="text-base text-[#366682]">Benötigt detaillierte, qualitätsgesicherte Daten zur Prozessanalyse.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center">
+                    <span class="text-4xl">🏢</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 text-[#003F5C]">Behörden & Wirtschaft</h3>
+                    <p class="text-base text-[#366682]">Benötigen standardisierte Kennzahlen für Berichte und Planung.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center">
+                    <span class="text-4xl">🙋</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 text-[#003F5C]">Öffentlichkeit</h3>
+                    <p class="text-base text-[#366682]">Benötigt verständliche Indikatoren zum Zustand des Gewässers.</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="space-y-12 md:space-y-20">
+            
+            <section class="card">
+                <h2 class="text-3xl font-bold text-center mb-8">Einleitung</h2>
+                <p>Die Installation automatischer Messstationen zur stündlichen Erfassung von Wasserqualitätsparametern an Seen wie dem Useriner See markiert einen Paradigmenwechsel in der Gewässerüberwachung. Im Gegensatz zur traditionellen, niederfrequenten Beprobung, die oft nur Momentaufnahmen liefert, ermöglichen hochfrequente Datenreihen ein tiefgreifendes, mechanistisches Verständnis der komplexen physikalischen, chemischen und biologischen Prozesse in aquatischen Ökosystemen.[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10061935/" target="_blank">1</a>, <a href="https://pubs.acs.org/doi/10.1021/acs.est.2c07798" target="_blank">2</a>] Diese hohe zeitliche Auflösung ist unerlässlich, um kurzfristige, aber ökologisch hochrelevante Ereignisse wie Starkregeneinträge, Algenblüten oder Sauerstoffschwankungen zu erfassen und ihre Auswirkungen zu bewerten.[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10061935/" target="_blank">1</a>, <a href="https://serc.carleton.edu/eddie/teaching_materials/modules/module9.html" target="_blank">3</a>]</p>
+
+                <button class="accordion-button active">
+                    <span>Das Potenzial hochfrequenter Sensordaten</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content" style="max-height: fit-content;">
+                    <div class="accordion-content-inner">
+                        <p>Die Bereitstellung dieser Daten auf einer Open-Data-Plattform (ODP) verfolgt das Ziel, diesen Datenschatz für eine breite Nutzerschaft zugänglich zu machen. Die Anforderungen dieser Zielgruppen sind jedoch heterogen:</p>
+                        <ul>
+                            <li><strong>Wissenschaft:</strong> Forscher benötigen detaillierte, qualitätsgesicherte und nachvollziehbare Roh- und Aggregatdaten inklusive umfassender Metadaten, um Prozessstudien durchzuführen, Modelle zu validieren und die ökologischen Treiber von Veränderungen zu identifizieren.[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10061935/" target="_blank">1</a>, <a href="https://pubs.acs.org/doi/10.1021/acs.est.2c07798" target="_blank">2</a>, <a href="https://open-research-europe.ec.europa.eu/articles/4-244" target="_blank">4</a>]</li>
+                            <li><strong>Unternehmen und Behörden:</strong> Akteure aus der Wasserwirtschaft, Ingenieurbüros oder Umweltbehörden benötigen verlässliche, standardisierte und aggregierte Kennzahlen für die Erfüllung von Berichtspflichten (z.B. gemäß EG-Wasserrahmenrichtlinie), für Planungszwecke und für die Bewertung von Managementmaßnahmen.[<a href="https://www.fona.de/medien/pdf/WavEII_Statusseminar2023_low_final.pdf?m=1739968189&" target="_blank">5</a>, <a href="https://ketos.co/water-quality-monitoring-compliance-technology" target="_blank">6</a>]</li>
+                            <li><strong>Öffentlichkeit:</strong> Interessierte Bürgerinnen und Bürger benötigen einfach verständliche, aber aussagekräftige Indikatoren, die den Zustand eines Gewässers widerspiegeln, beispielsweise im Vergleich zu Grenzwerten für Trink- oder Badegewässerqualität.[<a href="https://www.umweltbundesamt.de/daten/wasser/wasserwirtschaft/qualitaet-des-trinkwassers-aus-zentralen" target="_blank">7</a>, <a href="https://www.umweltbundesamt.de/themen/wasser/trinkwasser/trinkwasserqualitaet/daten-zur-trinkwasserqualitaet" target="_blank">8</a>]</li>
+                        </ul>
+                        <p>Um diesen unterschiedlichen Anforderungen gerecht zu werden, ist eine einfache Mittelung der stündlichen Messwerte unzureichend. Es bedarf eines wissenschaftlich fundierten, zweistufigen Ansatzes, der in diesem Gutachten dargelegt wird:</p>
+                        <ol class="list-decimal pl-5">
+                            <li><strong>Automatisierte Datenvalidierung:</strong> Ein robustes Framework zur Qualitätssicherung, das fehlerhafte Sensordaten zuverlässig erkennt und kennzeichnet, um die Integrität der Datengrundlage zu gewährleisten.</li>
+                            <li><strong>Parameter-spezifische Konsolidierung:</strong> Eine differenzierte Aggregation der validierten stündlichen Daten zu aussagekräftigen Tageskennzahlen, die die ökologische Relevanz jedes einzelnen Parameters berücksichtigt.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8">Unser zweistufiger Prozess für verlässliche Daten</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center">
+                    <div class="flow-step">1. Automatisierte Validierung</div>
+                    <div class="flow-arrow flow-arrow-mobile">➔</div>
+                    <div class="flow-step">2. Intelligente Konsolidierung</div>
+                    <div class="flow-arrow flow-arrow-mobile">➔</div>
+                    <div class="flow-step bg-[#7392A5] text-white border-[#7392A5]">Ziel: FAIR Open Data</div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4">Schritt 1: Automatisierte Datenvalidierung (QA/QC)</h2>
+                        <p class="text-[#366682] mb-6">Jeder einzelne stündliche Messwert durchläuft einen strengen, automatisierten Prüfprozess, um Fehler zu identifizieren. Fehlerhafte Daten werden nicht gelöscht, sondern transparent mit Qualitäts-Flags markiert. Dies stellt die Datenintegrität sicher.</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg- text-white">
+                                    <tr>
+                                        <th class="p-2 rounded-tl-lg">Prüfung</th>
+                                        <th class="p-2">Beschreibung</th>
+                                        <th class="p-2 rounded-tr-lg">Beispiel</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-b border-">
+                                        <td class="p-2 font-semibold">Plausibilität</td>
+                                        <td class="p-2 text-sm">Liegt der Wert in einem physikalisch möglichen Bereich?</td>
+                                        <td class="p-2 text-sm">pH > 14 = Fehler</td>
+                                    </tr>
+                                    <tr class="border-b border-">
+                                        <td class="p-2 font-semibold">Konstante Werte</td>
+                                        <td class="p-2 text-sm">Bleibt der Wert über Stunden identisch?</td>
+                                        <td class="p-2 text-sm">3h lang 7.1 °C = Fehler</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-semibold">Ausreißer (Spikes)</td>
+                                        <td class="p-2 text-sm">Weicht der Wert extrem von Nachbarwerten ab?</td>
+                                        <td class="p-2 text-sm">Trübung springt von 5 auf 500 = Verdächtig</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chart-container" style="height: 300px; max-width: 300px;">
+                            <canvas id="qualityFlagChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-[#366682] mt-2">Hypothetische Verteilung der Qualitäts-Flags an einem Tag.</p>
+                    </div>
+                </div>
+                <button class="accordion-button">
+                    <span>Details zur Datenvalidierung und Qualitätssicherung</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <h3>Teil I: Ein robustes Framework zur automatisierten Datenvalidierung und Qualitätssicherung</h3>
+                        <p>Die Grundlage für jede sinnvolle Nutzung von Sensordaten ist eine rigorose und transparente Qualitätssicherung. Ohne diesen Schritt besteht die Gefahr, dass Sensorfehler als reale Umweltereignisse fehlinterpretiert oder wichtige Ereignisse durch fehlerhafte Daten maskiert werden. Ziel dieses Teils ist die Definition eines automatisierten Workflows, der die Rohdaten prüft und für die weitere Verarbeitung vorbereitet.</p>
+                        
+                        <h4>1.1 Grundsätze der Datenqualitätskontrolle (QA/QC)</h4>
+                        <p>Die Einrichtung eines Qualitätssicherungsprozesses muss sich an international etablierten Standards orientieren. Ein zentrales Element hierbei ist die Festlegung von Datenqualitätszielen (Data Quality Objectives, DQOs), die vorab definieren, welche Anforderungen die Daten für ihren jeweiligen Verwendungszweck erfüllen müssen.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>, <a href="https://www.aanderaa.com/media/pdfs/tengberg-et-al-l-&-o-methods-evaluation-of-a-lifetime-based-oxygen-optode.pdf" target="_blank">10</a>] Diese DQOs werden durch die sogenannten PARCCS-Kriterien (Precision, Accuracy, Representativeness, Comparability, Completeness, Sensitivity) operationalisiert und stellen sicher, dass die Datenqualität bekannt und dokumentiert ist.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>]</p>
+                        <p>Für die Verarbeitung von hochfrequenten Sensordaten hat sich ein mehrstufiges System bewährt, das den Verarbeitungsgrad der Daten klar definiert [<a href="https://www.usgs.gov/publications/guidelines-and-standard-procedures-high-frequency-groundwater-quality-monitoring" target="_blank">11</a>]:</p>
+                        <ul>
+                            <li><strong>Level 0:</strong> Unbearbeitete Rohdaten, wie sie direkt vom Sensor bzw. Datenlogger empfangen werden. Diese Daten sind für die direkte Veröffentlichung ungeeignet.</li>
+                            <li><strong>Level 1:</strong> Daten, die einen automatisierten Validierungsprozess durchlaufen haben. Fehlerhafte oder verdächtige Werte werden dabei nicht gelöscht, sondern mit eindeutigen Qualitäts-Flags gekennzeichnet. Dies ist das Ziel des hier beschriebenen automatisierten Workflows.</li>
+                            <li><strong>Level 2:</strong> Daten, die zusätzlich einer manuellen Prüfung und ggf. Korrektur durch Fachexperten unterzogen wurden. Dies kann beispielsweise die Korrektur von Sensordrift basierend auf regelmäßigen Vergleichsmessungen umfassen und ist insbesondere für langfristige wissenschaftliche Auswertungen von großer Bedeutung.[<a href="https://www.usgs.gov/publications/guidelines-and-standard-procedures-high-frequency-groundwater-quality-monitoring" target="_blank">11</a>, <a href="https://www.umweltbundesamt.de/sites/default/files/medien/publikation/long/2832.pdf" target="_blank">12</a>]</li>
+                        </ul>
+                        <p>Ein unverzichtbarer Bestandteil der Datenqualität sind umfassende <strong>Metadaten</strong>. Jede Messung ist nur im Kontext ihrer Entstehung interpretierbar. Daher müssen alle relevanten Informationen wie Standortkoordinaten, Sensortyp, Seriennummer, Messtiefe, Installations- und Wartungsdaten sowie Kalibrierungsprotokolle systematisch erfasst und mit den Messdaten verknüpft werden.[13, 13, <a href="https://www2.gov.bc.ca/assets/gov/environment/air-land-water/water/waterquality/monitoring-water-quality/water-stewardship/stewardship_data_qaqc_guidelines.pdf" target="_blank">14</a>] Diese Metadaten sind die Grundlage für die Nachvollziehbarkeit und die langfristige wissenschaftliche Nutzbarkeit der Daten.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>]</p>
+
+                        <h4>1.2 Automatisierte Validierungs- und Filterprozeduren (Level-1-Prüfung)</h4>
+                        <p>Der folgende Workflow beschreibt eine Reihe von automatisierten Prüfungen, die auf jeden einzelnen stündlichen Messwert angewendet werden sollten. Das Ergebnis ist nicht die Löschung von Daten, sondern die Zuweisung eines Qualitäts-Flags zu jedem Wert.</p>
+                        
+                        <h5>1.2.1 Prüfung auf fehlende Werte</h5>
+                        <p>Die Datensatzbeschreibung [<a href="https://www.lanuv.nrw.de/fileadmin/lanuvpubl/4_arbeitsblaetter/40025.pdf" target="_blank">15</a>] spezifiziert den Wert <code>-99999</code> als eindeutigen Code für einen fehlenden Messwert. Ein automatisiertes Skript muss diesen Wert zuverlässig erkennen und den entsprechenden Datensatz als "fehlend" kennzeichnen (flaggen), sodass er bei nachfolgenden Berechnungen ignoriert wird.</p>
+                        
+                        <h5>1.2.2 Plausibilitätsprüfung (Gross Range Check)</h5>
+                        <p>Bei dieser Prüfung wird jeder Messwert mit einem vordefinierten, plausiblen Wertebereich abgeglichen. Werte, die außerhalb dieses Bereichs liegen, sind als fehlerhaft zu betrachten. Es empfiehlt sich ein zweistufiges Vorgehen:</p>
+                        <ol class="list-decimal pl-5">
+                            <li><strong>Harte Grenzen (Hard Ranges):</strong> Diese definieren die physikalisch oder durch die Sensortechnik bedingten absoluten Grenzen. Die Spalte <code>Wertebreich</code> in der Datensatzbeschreibung [13] liefert hierfür die Grundlage (z.B. pH-Wert: 1 bis 14; gelöster Sauerstoff: 0 bis 25 ppm). Werte außerhalb dieser Grenzen sind definitiv ungültig.</li>
+                            <li><strong>Weiche Grenzen (Soft Ranges):</strong> Die in der Dokumentation angegebenen Bereiche sind teilweise sehr weit gefasst (z.B. Lufttemperatur -100 bis 50 °C). Um eine feinere Prüfung zu ermöglichen, sollten standort- und saisonabhängige "weiche" Grenzen definiert werden. Beispielsweise ist eine Wassertemperatur von 2 °C im Useriner See im Juli höchst unwahrscheinlich und deutet auf einen Fehler hin, obwohl sie innerhalb der harten Grenze von 0 bis 50 °C liegt. Werte außerhalb dieser weichen Grenzen werden nicht sofort verworfen, aber als "verdächtig" oder "unplausibel" markiert. Diese standortspezifischen Grenzen können auf Basis historischer Daten oder Experteneinschätzungen in Anlehnung an das Konzept typspezifischer Referenzbedingungen (z.B. nach LAWA) abgeleitet werden.[<a href="https://www2.gov.bc.ca/assets/gov/environment/air-land-water/water/waterquality/monitoring-water-quality/water-stewardship/stewardship_data_qaqc_guidelines.pdf" target="_blank">14</a>, <a href="https://www.lanuv.nrw.de/fileadmin/lanuvpubl/4_arbeitsblaetter/40025.pdf" target="_blank">15</a>]</li>
+                        </ol>
+
+                        <h5>1.2.3 Prüfung auf konstante Werte (Stuck Value Check)</h5>
+                        <p>Ein funktionierender Sensor in einem dynamischen System wie einem See wird nahezu niemals über mehrere Stunden exakt denselben Wert liefern. Die Beispiel-Rohdaten zeigen kontinuierliche, natürliche Fluktuationen.[13] Ein Wert, der sich über einen definierten Zeitraum (z.B. > 3 Stunden) nicht ändert, ist ein starkes Indiz für einen "eingefrorenen" oder defekten Sensor. Solche Sequenzen müssen erkannt und die entsprechenden Werte als fehlerhaft gekennzeichnet werden.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>]</p>
+
+                        <h5>1.2.4 Prüfung auf sprunghafte Änderungen (Spike/Rate of Change Check)</h5>
+                        <p>Diese Prüfung identifiziert unrealistisch schnelle Änderungen zwischen zwei aufeinanderfolgenden Messpunkten, die oft durch elektronisches Rauschen oder kurzzeitige Störungen (z.B. durch Biofouling) verursacht werden. Ein einfacher Vergleich der Änderungsrate kann jedoch bei realen, schnellen Umweltveränderungen (z.B. ein Gewitter, das die Trübung rapide ansteigen lässt) zu Fehlalarmen führen.</p>
+                        <p>Ein robusterer Ansatz, inspiriert von Methoden wie SentemQC [<a href="https://open-research-europe.ec.europa.eu/articles/4-244" target="_blank">4</a>] oder dem Chauvenet-Kriterium [<a href="https://www.fiw.rwth-aachen.de/fileadmin/user_upload/Public_Relations/PDF/mobileVIEW_Abschlussbericht_100S_de.pdf" target="_blank">17</a>], nutzt statistische Eigenschaften der umgebenden Datenpunkte. Ein praktischer Ansatz ist die Verwendung eines gleitenden Fensters (z.B. über 5 Stunden):</p>
+                        <ol class="list-decimal pl-5">
+                            <li>Für jeden Datenpunkt wird der Median und die Standardabweichung (oder die robustere Median Absolute Deviation, MAD) der Werte im umgebenden Zeitfenster berechnet.</li>
+                            <li>Ein Datenpunkt wird als Ausreißer (Spike) markiert, wenn er um mehr als eine definierte Anzahl von Standardabweichungen (z.B. 3-4 σ) vom Median des Fensters abweicht.</li>
+                        </ol>
+                        <p>Dieser adaptive Ansatz kann besser zwischen natürlichen, starken Schwankungen und einzelnen, unplausiblen Ausreißern unterscheiden.</p>
+
+                        <h4>1.3 Systematik der Daten-Flagging und Dokumentation</h4>
+                        <p>Anstatt fehlerhafte Daten zu löschen, was die Nachvollziehbarkeit beeinträchtigen würde, werden sie mit Qualitäts-Flags versehen.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>] Dies gewährleistet Transparenz für alle nachfolgenden Nutzer. Es wird empfohlen, für jeden Messparameter eine zusätzliche Spalte (z.B. <code>ph_flag</code>) anzulegen, die einen numerischen Code zur Datenqualität enthält. Dieser Code steuert direkt die weitere Verarbeitung bei der Tagesaggregation.</p>
+                        
+                        <h5>Tabelle 1: Definition der Datenqualitäts-Flags für die automatisierte Validierung</h5>
+                        <p>Diese Tabelle standardisiert die Kommunikation über die Datenqualität und ist die Grundlage für die automatisierte Konsolidierung. Sie macht den Validierungsprozess transparent und nachvollziehbar für alle Nutzergruppen.</p>
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead>
+                                    <tr><th>Flag-Wert</th><th>Bezeichnung</th><th>Beschreibung</th><th>Aktion bei Tageskonsolidierung</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Einwandfrei</td><td>Wert hat alle Prüfungen bestanden.</td><td>Wird für alle Berechnungen verwendet.</td></tr>
+                                    <tr><td>2</td><td>Plausibel</td><td>Wert hat Level-1-Prüfung bestanden, liegt aber außerhalb der "weichen" saisonalen Grenzen.</td><td>Wird für alle Berechnungen verwendet, aber die Anzahl der "plausiblen" Werte pro Tag sollte als Qualitätsindikator mitgeführt werden.</td></tr>
+                                    <tr><td>3</td><td>Ausreißer</td><td>Wert weicht signifikant von benachbarten Werten ab (Spike-Check fehlgeschlagen).</td><td>Wird von der Berechnung von Mittelwert/Median/Standardabweichung ausgeschlossen, aber für Min/Max-Berechnung berücksichtigt und separat gekennzeichnet.</td></tr>
+                                    <tr><td>4</td><td>Fehlerhaft</td><td>Wert liegt außerhalb der physikalisch/technisch möglichen Grenzen (Gross Range Check fehlgeschlagen).</td><td>Wird von allen Berechnungen ausgeschlossen.</td></tr>
+                                    <tr><td>5</td><td>Konstanter Wert</td><td>Wert ist Teil einer Sequenz identischer Werte (Stuck Value Check fehlgeschlagen).</td><td>Wird von allen Berechnungen ausgeschlossen.</td></tr>
+                                    <tr><td>9</td><td>Fehlender Wert</td><td>Sensor lieferte keinen Wert oder den Fehlercode <code>-99999</code>.</td><td>Wird von allen Berechnungen ausgeschlossen.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Dieses interne, numerische Flagging-System ist für die maschinelle Verarbeitung optimiert. Für die Veröffentlichung auf der ODP können diese numerischen Flags in nutzerfreundlichere, standardisierte Bezeichnungen übersetzt werden (z.B. "geprüft", "geschätzt", "verworfen"), um internationalen Standards für die Datenqualifizierung zu entsprechen.[<a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">9</a>, <a href="https://www.fiw.rwth-aachen.de/fileadmin/user_upload/Public_Relations/PDF/mobileVIEW_Abschlussbericht_100S_de.pdf" target="_blank">17</a>]</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">Ein Tag im Leben des Useriner Sees</h2>
+                <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die stündlichen Daten zeigen eine hohe Dynamik, die durch einen einfachen Tagesmittelwert verloren ginge. Besonders der pH-Wert und der gelöste Sauerstoff schwanken stark durch die biologische Aktivität (Photosynthese am Tag, Atmung in der Nacht).</p>
+                <div class="chart-container">
+                    <canvas id="dailyFluctuationChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-[#366682] mt-2">Stündliche Messwerte für pH und gelösten Sauerstoff am 28. April 2025.</p>
+            </section>
+
+            <section class="card">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                         <h2 class="text-2xl font-bold mb-4">Schritt 2: Intelligente Konsolidierung</h2>
+                        <p class="text-[#366682] mb-6">Anstatt nur eines Mittelwerts werden für jeden Parameter die ökologisch relevantesten statistischen Kennzahlen berechnet. Dies liefert ein vielschichtiges und aussagekräftiges Bild des Gewässerzustands.</p>
+                        <div class="space-y-4">
+                            <div class="p-4 border border- rounded-lg">
+                                <h4 class="font-bold text-[#003F5C]">Temperatur & Sauerstoff</h4>
+                                <p class="text-sm text-[#366682]"><span class="font-semibold text-[#366682]">Min/Max</span> sind entscheidend für Stressgrenzen von Fischen. Die <span class="font-semibold text-[#366682]">Standardabweichung</span> zeigt die tägliche Dynamik.</p>
+                            </div>
+                             <div class="p-4 border border- rounded-lg">
+                                <h4 class="font-bold text-[#003F5C]">pH-Wert</h4>
+                                <p class="text-sm text-[#366682]">Der <span class="font-semibold text-[#366682]">Median</span> ist der korrekte Zentralwert für die logarithmische Skala. <span class="font-semibold text-[#366682]">Min/Max</span> zeigen Extreme, die toxisch wirken können.</p>
+                            </div>
+                            <div class="p-4 border border- rounded-lg">
+                                <h4 class="font-bold text-[#003F5C]">Chlorophyll-a (Algen)</h4>
+                                <p class="text-sm text-[#366682]">Das <span class="font-semibold text-[#366682]">Maximum</span> ist der wichtigste Indikator zur Erkennung von Algenblüten-Peaks.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                             <canvas id="consolidationMetricsChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-[#366682] mt-2">Anzahl empfohlener Tages-Kennzahlen pro Parameter-Typ.</p>
+                    </div>
+                </div>
+                <button class="accordion-button">
+                    <span>Details zur Parameter-spezifischen Konsolidierung</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <h3>Teil II: Parameter-spezifische Empfehlungen zur Konsolidierung von Tageswerten</h3>
+                        <p>Nachdem die stündlichen Rohdaten durch den Validierungsprozess qualitätsgesichert wurden, erfolgt der zweite entscheidende Schritt: die Konsolidierung zu aussagekräftigen Tageswerten. Die Auswahl der statistischen Kennzahlen muss dabei die spezifische Dynamik und ökologische Relevanz jedes Parameters widerspiegeln, um den unterschiedlichen Informationsbedürfnissen der Zielgruppen gerecht zu werden.</p>
+                        
+                        <h4>2.1 Statistische Grundlagen der Aggregation in der Limnologie</h4>
+                        <p>Die stündlichen Messwerte eines Tages bilden eine Zeitreihe, deren Charakteristik durch verschiedene statistische Kennzahlen beschrieben werden kann.[<a href="https://www.tableau.com/de-de/blog/data-prep-101-what-aggregate-function-and-how-do-you-combine-aggregated-data-0" target="_blank">19</a>] Jede dieser Kennzahlen hat eine spezifische Aussagekraft:</p>
+                        <ul>
+                            <li><strong>Mittelwert (Arithmetisches Mittel):</strong> Repräsentiert die durchschnittliche Bedingung oder Konzentration über den Tag. Er ist nützlich für Bilanzierungen (z.B. täglicher Wärmeeintrag, mittlere Nährstoffkonzentration), reagiert jedoch empfindlich auf extreme Ausreißer, die das Ergebnis verzerren können.</li>
+                            <li><strong>Median:</strong> Der Zentralwert, der die geordnete Datenreihe in zwei gleich große Hälften teilt. Er ist robust gegenüber Ausreißern und die statistisch korrekte Wahl für die Beschreibung der zentralen Tendenz bei schief verteilten Daten oder logarithmischen Skalen (z.B. pH-Wert).[<a href="https://de.wikipedia.org/wiki/Median" target="_blank">20</a>]</li>
+                            <li><strong>Minimum (Min) & Maximum (Max):</strong> Erfassen die Extremwerte des Tages. Diese sind oft von höchster ökologischer Relevanz, da sie Stressbedingungen für aquatische Organismen anzeigen. Das Sauerstoffminimum kann zu Fischsterben führen, das Temperaturmaximum den Stoffwechsel belasten.[<a href="https://de.wikipedia.org/wiki/Median" target="_blank">20</a>, <a href="https://www.epa.gov/system/files/documents/2021-07/parameter-factsheet_temperature.pdf" target="_blank">21</a>]</li>
+                            <li><strong>Standardabweichung (Std. Abw.):</strong> Ist ein Maß für die Streuung der Werte um den Mittelwert. Sie beschreibt die Amplitude der Tagesschwankung und damit die Dynamik des Systems.[<a href="https://novustat.com/statistik-blog/standardabweichung-interpretation.html" target="_blank">23</a>, <a href="https://www.nachhilfe-team.net/lernen-leicht-gemacht/standardabweichung/" target="_blank">24</a>] Eine hohe Standardabweichung der Wassertemperatur kann auf thermischen Stress hindeuten [<a href="https://www.noe-lfv.at/download/wissenschaft/2023_2012_Das_thermale_Regime_der_Pielach_Abschlussbericht.pdf" target="_blank">25</a>], eine hohe Schwankung des Sauerstoffs auf eine hohe Produktivität.</li>
+                            <li><strong>Anzahl der gültigen Werte (Count):</strong> Eine essenzielle Qualitätsmetrik. Ein Tagesmittelwert, der auf 24 validen Messungen basiert, ist weitaus zuverlässiger als einer, der aufgrund von Sensorproblemen auf nur fünf Messungen beruht. Dieser Wert muss immer mitberichtet werden.</li>
+                        </ul>
+
+                        <h4>2.2 Empfehlungen zur Aggregation der Tageswerte</h4>
+                        <h5>Tabelle 2: Empfehlungen zur Aggregation der stündlichen Messwerte zu Tageskennzahlen</h5>
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead>
+                                    <tr><th>Parameter (Variablenname)</th><th>Empfohlene Tages-Kennzahlen</th><th>Begründung der Auswahl und ökologische Relevanz</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code>air_temperature</code></td><td>Min, Max, Mittelwert</td><td>Erfasst die tageszeitliche Temperaturschwankung, die den Wärmeeintrag in den See steuert.</td></tr>
+                                    <tr><td><code>water_temperature_*</code></td><td>Min, Max, Mittelwert, Std. Abw.</td><td>Min/Max sind kritisch für physiologische Stressgrenzen von Organismen.[<a href="https://www.epa.gov/system/files/documents/2021-07/parameter-factsheet_temperature.pdf" target="_blank">21</a>, <a href="https://www.noe-lfv.at/download/wissenschaft/2023_2012_Das_thermale_Regime_der_Pielach_Abschlussbericht.pdf" target="_blank">25</a>, <a href="https://www.epa.gov/caddis/temperature" target="_blank">26</a>] Mittelwert für Wärmehaushalt. Std. Abw. beschreibt die tägliche Variabilität als Stressfaktor.[<a href="https://www.nachhilfe-team.net/lernen-leicht-gemacht/standardabweichung/" target="_blank">24</a>]</td></tr>
+                                    <tr><td><code>conductivity</code></td><td>Median, Min, Max, Std. Abw.</td><td>Median als robuster Zentralwert. Min/Max zur Detektion von Verdünnungs- (Starkregen) oder Konzentrationsereignissen. Std. Abw. als Maß für die Stabilität.</td></tr>
+                                    <tr><td><code>turbidity</code></td><td>Median, Max, Std. Abw.</td><td>Median als robuster Zentralwert. Max ist entscheidend zur Erfassung von Trübe-Ereignissen (Sedimenteintrag durch Regen, Algenblüten). Std. Abw. zeigt die Dynamik.</td></tr>
+                                    <tr><td><code>ph</code></td><td>Median, Min, Max</td><td>pH ist eine logarithmische Skala, der Median ist der korrekte Zentralwert.[<a href="https://de.wikipedia.org/wiki/Median" target="_blank">20</a>] Mittelwert ist mathematisch falsch. Min/Max sind entscheidend, da Extremwerte toxisch wirken und die Bioverfügbarkeit von Stoffen steuern.[<a href="https.epa.gov/system/files/documents/2021-07/parameter-factsheet_ph.pdf" target="_blank">28</a>, <a href="https://waterrangers.com/testkits/tests/ph-in-freshwater/" target="_blank">29</a>]</td></tr>
+                                    <tr><td><code>dissolved_oxygen</code></td><td>Min, Max, Mittelwert, Std. Abw.</td><td>Das absolute Minimum ist der wichtigste Wert zur Bewertung von Hypoxie/Anoxie, die zu Fischsterben führt.[<a href="https://atlas-scientific.com/blog/dissolved-oxygen-in-water-ppm-for-fish/" target="_blank">22</a>, <a href="https://www.heathlandgroup.co.uk/articles/dissolved-oxygen-levels" target="_blank">31</a>] Max zeigt Übersättigung durch Photosynthese. Mittelwert und Std. Abw. beschreiben die tägliche Produktions-/Respirations-Bilanz.</td></tr>
+                                    <tr><td><code>redox_potential</code></td><td>Median, Min, Max</td><td>Median als robuster Zentralwert. Das Minimum ist entscheidend, da niedrige Redoxpotentiale die Freisetzung von Phosphor aus dem Sediment und die Bildung von Schwefelwasserstoff anzeigen.</td></tr>
+                                    <tr><td><code>chlorophyll_a</code>, <code>phycocyanin</code></td><td>Median, Max, Std. Abw.</td><td>Proxies für Algenbiomasse. Median als Maß für die mittlere Biomasse. Das Maximum ist entscheidend zur Identifizierung von Algenblüten-Peaks.[<a href="https://www.kdhe.ks.gov/DocumentCenter/View/9396/Chlorophyll---A-Criteria-for-Public-Water-Supply-Lakes-or-Reservoirs-PDF" target="_blank">33</a>] Std. Abw. zeigt die tageszeitliche Dynamik (z.B. Migration).</td></tr>
+                                    <tr><td><code>doc</code>, <code>toc</code></td><td>Median, Std. Abw.</td><td>Median als Maß für die mittlere Konzentration an organischem Material. Diese Werte sind i.d.R. weniger dynamisch als z.B. Sauerstoff, daher ist die Variabilität (Std. Abw.) ein guter Indikator für externe Einträge.</td></tr>
+                                    <tr><td><code>nitrate</code></td><td>Median, Std. Abw.</td><td>Median als Maß für die mittlere Nährstoffverfügbarkeit. Nitrate können tageszeitliche Schwankungen durch Aufnahme von Phytoplankton aufweisen [<a href="https://studyflix.de/biologie/oekosystem-see-2525" target="_blank">35</a>], die durch die Std. Abw. erfasst werden.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>2.3 Detaillierte Erläuterungen zu ausgewählten Parametergruppen</h4>
+                        <h5>Physikalische Parameter (Temperatur, Leitfähigkeit, Trübung)</h5>
+                        <p>Die <strong>Wassertemperatur</strong> ist ein "abiotischer Masterfaktor" [<a href="https://www.fondriest.com/environmental-measurements/parameters/water-quality/water-temperature/" target="_blank">27</a>], der nahezu alle biologischen und chemischen Prozesse im See steuert. Erhöhte Temperaturen beschleunigen Stoffwechselraten, erhöhen aber gleichzeitig den Sauerstoffbedarf der Organismen, während die physikalische Löslichkeit von Sauerstoff im Wasser sinkt.[<a href="https://www.fondriest.com/environmental-measurements/parameters/water-quality/water-temperature/" target="_blank">27</a>] Die täglichen <strong>Minima</strong> und <strong>Maxima</strong> definieren die Stressgrenzen für die aquatische Lebensgemeinschaft, insbesondere für stenotherme Arten wie Forellen.[<a href="https://www.epa.gov/system/files/documents/2021-07/parameter-factsheet_temperature.pdf" target="_blank">21</a>] Die <strong>Standardabweichung</strong> der Tagestemperatur ist ein Maß für die thermische Dynamik; hohe Schwankungen können ebenfalls Stress verursachen.[<a href="https://www.noe-lfv.at/download/wissenschaft/2023_2012_Das_thermale_Regime_der_Pielach_Abschlussbericht.pdf" target="_blank">25</a>]</p>
+                        <p>Die <strong>Leitfähigkeit</strong> ist ein Summenparameter für die Konzentration gelöster Ionen. Der <strong>Median</strong> ist ein robuster Indikator für den allgemeinen Mineralisierungsgrad. Plötzliche Abfälle (<strong>Minimum</strong>) können auf starke Verdünnungsereignisse durch Niederschläge hindeuten, während Anstiege (<strong>Maximum</strong>) auf die Einleitung von salzhaltigeren Wässern oder Evaporationseffekte hinweisen können.</p>
+                        <p>Die <strong>Trübung</strong> ist ein Maß für die Lichtstreuung durch suspendierte Partikel (Sedimente, Algen). Da Trübungsereignisse oft kurz und heftig sind (z.B. nach einem Gewitter), ist der <strong>Maximalwert</strong> des Tages der wichtigste Indikator für solche Einträge. Der <strong>Median</strong> beschreibt die Grundtrübung des Gewässers.</p>
+                        
+                        <h5>Chemische Schlüsselparameter (pH, Sauerstoff, Redox)</h5>
+                        <p>Der <strong>pH-Wert</strong> ist der negative dekadische Logarithmus der Wasserstoffionen-Aktivität.[<a href="https://de.wikipedia.org/wiki/PH-Wert" target="_blank">36</a>] Aus diesem Grund ist eine arithmetische Mittelung der pH-Werte mathematisch nicht korrekt und würde zu irreführenden Ergebnissen führen. Der <strong>Median</strong> ist die statistisch angemessene Maßzahl für die zentrale Tendenz.[<a href="https://de.wikipedia.org/wiki/Median" target="_blank">20</a>, <a href="https://www.reddit.com/r/statistics/comments/2s7icg/proper_way_to_aggregate_medians/" target="_blank">37</a>] Der Tagesgang des pH-Wertes wird maßgeblich durch die biologische Aktivität gesteuert: Photosynthese verbraucht $CO_2$, was den pH-Wert ansteigen lässt, während die Respiration $CO_2$ freisetzt und den pH-Wert senkt.[<a href="https.epa.gov/system/files/documents/2021-07/parameter-factsheet_ph.pdf" target="_blank">28</a>] Die täglichen <strong>Minima</strong> (meist frühmorgens) und <strong>Maxima</strong> (oft am späten Nachmittag) sind daher exzellente Indikatoren für die Produktivität des Ökosystems. Extreme pH-Werte haben direkte toxische Effekte auf Fischeier oder Kiemen und beeinflussen die Löslichkeit und Toxizität anderer Stoffe wie Ammoniak und Schwermetalle.[<a href="https.epa.gov/system/files/documents/2021-07/parameter-factsheet_ph.pdf" target="_blank">28</a>, <a href="https://waterrangers.com/testkits/tests/ph-in-freshwater/" target="_blank">29</a>]</p>
+                        <p>Der <strong>gelöste Sauerstoff</strong> ist für die meisten aquatischen Organismen überlebenswichtig. Das absolute <strong>Tagesminimum</strong> ist der kritischste Wert. Fällt die Konzentration unter bestimmte Schwellenwerte (z.B. < 3-4 mg/l), führt dies zu starkem Stress und bei längerem Anhalten zu Fischsterben.[<a href="https://atlas-scientific.com/blog/dissolved-oxygen-in-water-ppm-for-fish/" target="_blank">22</a>, <a href="https://www.heathlandgroup.co.uk/articles/dissolved-oxygen-levels" target="_blank">31</a>] Das <strong>Tagesmaximum</strong> zeigt hingegen eine Sauerstoffübersättigung an, die durch intensive Photosynthese verursacht wird. Die <strong>Standardabweichung</strong> gibt Aufschluss über die Amplitude des Tagesgangs und damit über die Bilanz von Sauerstoffproduktion und -zehrung.</p>
+
+                        <h5>Biologische und Nährstoff-Parameter</h5>
+                        <p><strong>Chlorophyll-a</strong> und <strong>Phycocyanin</strong> sind Pigmente, die als Proxies für die Biomasse von Algen insgesamt bzw. speziell von Cyanobakterien (Blaualgen) dienen. Der <strong>Median</strong> gibt einen guten Anhaltspunkt für die durchschnittliche Algenkonzentration. Da Algenblüten oft als kurzzeitige, aber intensive Peaks auftreten, ist der <strong>Maximalwert</strong> des Tages entscheidend, um solche Ereignisse zu detektieren und Warnschwellen (z.B. gemäß WHO-Empfehlungen) zu überwachen.[<a href="https.kdhe.ks.gov/DocumentCenter/View/9396/Chlorophyll---A-Criteria-for-Public-Water-Supply-Lakes-or-Reservoirs-PDF" target="_blank">33</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9360045/" target="_blank">34</a>]</p>
+                        <p><strong>DOC/TOC</strong> (gelöster/totaler organischer Kohlenstoff) und <strong>Nitrat</strong> sind wichtige Nährstoffparameter. Ihre Konzentrationen sind im Tagesverlauf oft weniger dynamisch als z.B. Sauerstoff oder pH. Der <strong>Median</strong> ist daher ein guter Indikator für die generelle Nährstoffsituation. Die <strong>Standardabweichung</strong> kann jedoch auf biologische Prozesse (z.B. tageszeitliche Nitrataufnahme durch Phytoplankton [<a href="https://studyflix.de/biologie/oekosystem-see-2525" target="_blank">35</a>]) oder auf episodische Einträge aus dem Einzugsgebiet hinweisen.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">Das Ziel: FAIR Open Data</h2>
+                <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die aufbereiteten Tagesdaten werden in einem standardisierten, "langen" Format bereitgestellt. Das macht sie auffindbar, zugänglich, interoperabel und nachnutzbar (FAIR) – die Grundlage für eine breite Anwendung in Wissenschaft und Praxis.</p>
+                <div class="overflow-x-auto bg- p-4 rounded-lg">
+                    <table class="w-full text-left">
+                        <thead class="text-[#366682]">
+                            <tr>
+                                <th class="p-2">see_id</th>
+                                <th class="p-2">datum</th>
+                                <th class="p-2">parameter</th>
+                                <th class="p-2">tages_median</th>
+                                <th class="p-2">tages_min</th>
+                                <th class="p-2">tages_max</th>
+                                <th class="p-2">anzahl_valide_werte</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-mono text-sm">
+                            <tr>
+                                <td class="p-2">DE_MV_USERINERSEE</td>
+                                <td class="p-2">2025-04-28</td>
+                                <td class="p-2">dissolved_oxygen</td>
+                                <td class="p-2">12.8</td>
+                                <td class="p-2">12.1</td>
+                                <td class="p-2">13.6</td>
+                                <td class="p-2">24</td>
+                            </tr>
+                             <tr class="bg-white/50">
+                                <td class="p-2">DE_MV_USERINERSEE</td>
+                                <td class="p-2">2025-04-28</td>
+                                <td class="p-2">ph</td>
+                                <td class="p-2">8.75</td>
+                                <td class="p-2">8.61</td>
+                                <td class="p-2">8.89</td>
+                                <td class="p-2">24</td>
+                            </tr>
+                             <tr>
+                                <td class="p-2">DE_MV_USERINERSEE</td>
+                                <td class="p-2">2025-04-28</td>
+                                <td class="p-2">water_temperature_1m</td>
+                                <td class="p-2">13.5</td>
+                                <td class="p-2">13.1</td>
+                                <td class="p-2">14.2</td>
+                                <td class="p-2">24</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="accordion-button">
+                    <span>Details zur Implementierung und Veröffentlichung</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <h3>Teil III: Implementierung und Veröffentlichung auf einer Open-Data-Plattform</h3>
+                        <p>Die technische Umsetzung und die Art der Datenbereitstellung sind entscheidend für den Erfolg einer Open-Data-Plattform. Ziel ist es, die aufbereiteten Daten so zu strukturieren, dass sie für Mensch und Maschine leicht zugänglich, verständlich und nachnutzbar sind.</p>
+                        
+                        <h4>3.1 Strukturierung des finalen Tagesdatensatzes</h4>
+                        <p>Die bereitgestellten Rohdaten liegen im "weiten" Format vor, bei dem jeder Parameter eine eigene Spalte hat.[13] Für eine flexible und skalierbare Open-Data-Plattform ist ein "langes" (oder "tidy") Datenformat jedoch deutlich überlegen. In diesem Format repräsentiert jede Zeile genau eine Beobachtung (d.h. einen aggregierten Tageswert für einen spezifischen Parameter an einem bestimmten See). Dieses Format ist Standard in der modernen Datenanalyse und erleichtert Filterungen, Gruppierungen und Visualisierungen erheblich, da keine neuen Spalten für neue Parameter oder Seen hinzugefügt werden müssen.</p>
+                        
+                        <h5>Tabelle 3: Empfohlene Zieldatenstruktur für die Open-Data-Plattform</h5>
+                        <p>Diese Struktur dient als direkte Vorlage für die technische Implementierung und gewährleistet eine hohe Interoperabilität der Daten.</p>
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead>
+                                    <tr><th>Spaltenname</th><th>Datentyp</th><th>Beschreibung</th><th>Beispiel</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code>see_id</code></td><td>String</td><td>Eindeutige Kennung des Sees (z.B. LAWA-Kennung)</td><td><code>DE_MV_USERINERSEE</code></td></tr>
+                                    <tr><td><code>wamo_id</code></td><td>String</td><td>Eindeutige Kennung der Messstation [13]</td><td><code>wamo00013</code></td></tr>
+                                    <tr><td><code>datum</code></td><td>Date</td><td>Datum im ISO 8601 Format (JJJJ-MM-TT)</td><td><code>2025-03-21</code></td></tr>
+                                    <tr><td><code>parameter</code></td><td>String</td><td>Variablenname des Parameters [13]</td><td><code>water_temperature_1m</code></td></tr>
+                                    <tr><td><code>einheit</code></td><td>String</td><td>Einheit des Parameters [13]</td><td><code>°C</code></td></tr>
+                                    <tr><td><code>tages_median</code></td><td>Float</td><td>Tagesmedian der validen Werte</td><td><code>7.85</code></td></tr>
+                                    <tr><td><code>tages_mittel</code></td><td>Float</td><td>Tagesmittelwert der validen Werte</td><td><code>7.91</code></td></tr>
+                                    <tr><td><code>tages_min</code></td><td>Float</td><td>Tagesminimum der validen Werte</td><td><code>6.92</code></td></tr>
+                                    <tr><td><code>tages_max</code></td><td>Float</td><td>Tagesmaximum der validen Werte</td><td><code>8.54</code></td></tr>
+                                    <tr><td><code>tages_stdabw</code></td><td>Float</td><td>Standardabweichung der validen Werte</td><td><code>0.45</code></td></tr>
+                                    <tr><td><code>anzahl_valide_werte</code></td><td>Integer</td><td>Anzahl der Messwerte (Flag 1 oder 2), die in die Berechnung eingingen</td><td><code>24</code></td></tr>
+                                    <tr><td><code>qualitaets_flag_aggregiert</code></td><td>String</td><td>Aggregierter Qualitäts-Flag für den Tag (z.B. "geprüft", "geschätzt")</td><td><code>geprüft</code></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>3.2 Best-Practice für die Bereitstellung als Open Data</h4>
+                        <p>Um den größtmöglichen Nutzen zu stiften, sollte die Veröffentlichung der Daten den internationalen <strong>FAIR-Prinzipien</strong> folgen: Die Daten müssen <strong>F</strong>indable (auffindbar), <strong>A</strong>ccessible (zugänglich), <strong>I</strong>nteroperable (interoperabel) und <strong>R</strong>eusable (nachnutzbar) sein.</p>
+                        <ul>
+                            <li><strong>Umfassende Metadaten-Dokumentation:</strong> Ein entscheidender Faktor für die Nachnutzbarkeit ist eine detaillierte Dokumentation, die alle relevanten Informationen bündelt. Diese sollte als begleitendes Dokument (z.B. PDF) und idealerweise auch in einem maschinenlesbaren Format (z.B. XML) bereitgestellt werden. Sie muss zwingend enthalten:
+                                <ul class="list-disc pl-5">
+                                    <li>Standortinformationen (Koordinaten, Seetyp nach LAWA [<a href="https://www.lawa.de/documents/lawa-rakon-teil-b-i-gewtyp-ref-210806-final-barrierefrei_1689850884.pdf" target="_blank">16</a>], etc.).[13]</li>
+                                    <li>Informationen zu Sensorik und Messtechnik (Hersteller, Modell, Messtiefe).[13]</li>
+                                    <li>Eine exakte Beschreibung der durchgeführten Validierungsschritte (Teil I dieses Gutachtens).</li>
+                                    <li>Die Definition der Qualitäts-Flags (Tabelle 1).</li>
+                                    <li>Die Definition der aggregierten Kennzahlen (Tabelle 2).</li>
+                                </ul>
+                                Diese Transparenz ist die Voraussetzung für die wissenschaftliche Verwertung und die Akzeptanz der Daten bei Behörden und Unternehmen.[<a href="https://www2.gov.bc.ca/assets/gov/environment/air-land-water/water/waterquality/monitoring-water-quality/water-stewardship/stewardship_data_qaqc_guidelines.pdf" target="_blank">14</a>, <a href="https://www.fiw.rwth-aachen.de/fileadmin/user_upload/Public_Relations/PDF/mobileVIEW_Abschlussbericht_100S_de.pdf" target="_blank">17</a>]
+                            </li>
+                            <li><strong>Datenzugriff und Formate:</strong> Die Daten sollten als einfach zu verarbeitende, kommaseparierte Textdateien (CSV) zum Download angeboten werden. Für eine fortschrittliche Nutzung und die Integration in andere Anwendungen und Web-Portale ist die Bereitstellung über eine Programmierschnittstelle (API) dringend zu empfehlen. Dies fördert die automatisierte Weiterverarbeitung und die Vernetzung von Daten, ein Kernziel der Digitalisierung in der Wasserwirtschaft.[<a href="https://ketos.co/water-quality-monitoring-compliance-technology" target="_blank">6</a>, <a href="https://www.umweltbundesamt.de/themen/wasser/recht-oekonomie-digitalisierung/digitalisierung-wasserwirtschaft" target="_blank">38</a>]</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 class="text-2xl font-bold text-center mb-4">Zusammenfassende Handlungsempfehlungen</h2>
+                <p class="text-center text-[#366682] mb-6 max-w-3xl mx-auto">Die erfolgreiche Bereitstellung von hochfrequenten Wasserqualitätsdaten erfordert einen systematischen und wissenschaftlich fundierten Ansatz. Hier sind die zentralen Empfehlungen zusammengefasst.</p>
+                <button class="accordion-button">
+                    <span>Handlungsempfehlungen anzeigen</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <ol class="list-decimal pl-5 space-y-4">
+                            <li><strong>Implementierung des automatisierten Validierungsprozesses:</strong> Es ist ein Skript zu entwickeln, das für jeden stündlichen Messwert die in Teil I beschriebenen Prüfungen durchführt: Prüfung auf fehlende Werte, Plausibilitätsprüfung gegen harte und weiche Grenzen, Stuck-Value-Check und einen robusten Spike-Check auf Basis eines gleitenden statistischen Fensters.</li>
+                            <li><strong>Einführung eines numerischen Flagging-Systems:</strong> Jeder stündliche Messwert ist mit einem Qualitäts-Flag gemäß Tabelle 1 zu versehen. Dieses Vorgehen gewährleistet die Transparenz und Nachvollziehbarkeit der Datenqualität und steuert die nachfolgende Aggregation.</li>
+                            <li><strong>Anwendung der parameter-spezifischen Aggregationsregeln:</strong> Die validierten und geflaggten stündlichen Daten sind gemäß den Empfehlungen in Tabelle 2 zu täglichen Kennzahlen zu konsolidieren. Dabei ist die Logik der Qualitäts-Flags zu berücksichtigen (z.B. Ausschluss von Werten mit Flag 4, 5, 9).</li>
+                            <li><strong>Strukturierung und Veröffentlichung der Daten:</strong> Die finalen Tageswerte sind im empfohlenen "langen" Datenformat (Tabelle 3) zu strukturieren. Die Veröffentlichung auf der ODP muss zwingend von einer umfassenden Metadaten-Dokumentation begleitet werden, die den gesamten Prozess von der Messung bis zum aggregierten Tageswert beschreibt.</li>
+                            <li><strong>Etablierung eines langfristigen Qualitätssicherungsprozesses:</strong> Die automatisierte Validierung ist die notwendige Basis, ersetzt aber nicht die fachliche Expertise. Es wird dringend empfohlen, einen Prozess für eine regelmäßige manuelle Überprüfung der Daten durch Experten (Level-2-Validierung) zu etablieren. Zudem ist die langfristige Genauigkeit der Daten nur durch regelmäßige Wartung und Kalibrierung der Sensoren sowie durch Validierungsmessungen mittels unabhängiger Laboranalysen (z.B. nach DIN/ISO-Normen oder EPA-Methoden) sicherzustellen.[<a href="https://www.aanderaa.com/media/pdfs/tengberg-et-al-l-&-o-methods-evaluation-of-a-lifetime-based-oxygen-optode.pdf" target="_blank">10</a>, <a href="https://www.umweltbundesamt.de/sites/default/files/medien/publikation/long/2832.pdf" target="_blank">12</a>, <a href="https://pubs.acs.org/doi/10.1021/es504773x" target="_blank">39</a>]</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 class="text-3xl font-bold text-center mb-8">Kosten-Nutzen-Analyse: Eigenentwicklung vs. Softwarekauf</h2>
+                <p class="text-center text-[#366682] mb-10 max-w-3xl mx-auto">Die Entscheidung zwischen der Entwicklung einer maßgeschneiderten Lösung und dem Kauf einer Standardsoftware ist strategisch. Beide Wege haben spezifische Vor- und Nachteile in Bezug auf Kosten, Flexibilität und langfristige Wartung.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Option 1: Eigenentwicklung -->
+                    <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                        <h3 class="text-2xl font-bold text-[#003F5C] mb-4">Option 1: Eigenentwicklung (Intern)</h3>
+                        <p class="text-[#366682] mb-6">Diese Option nutzt vorhandene Open-Source-Bibliotheken (z.B. Pandas in Python) und interne Personalressourcen. Die Logik für Validierung und Konsolidierung wird spezifisch für die Anforderungen des Projekts programmiert. Der Einsatz von KI-Entwicklungstools kann den Programmieraufwand signifikant reduzieren.</p>
+
+                        <h4 class="font-bold text-[#003F5C] mb-2">Geschätzter Kostenrahmen (Interner Satz: 300 €/Tag)</h4>
+                        <div class="overflow-x-auto mb-6">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-[#A0BCCB] text-white">
+                                    <tr>
+                                        <th class="p-2 rounded-tl-lg">Phase</th>
+                                        <th class="p-2">Aufwand (Tage)</th>
+                                        <th class="p-2 rounded-tr-lg">Kosten</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Konzeption & Architektur</td>
+                                        <td class="p-2">2 - 4</td>
+                                        <td class="p-2">600 - 1.200 €</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Entwicklung & Implementierung</td>
+                                        <td class="p-2">5 - 10</td>
+                                        <td class="p-2">1.500 - 3.000 €</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Test & Validierung</td>
+                                        <td class="p-2">3 - 5</td>
+                                        <td class="p-2">900 - 1.500 €</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Dokumentation & Deployment</td>
+                                        <td class="p-2">2 - 3</td>
+                                        <td class="p-2">600 - 900 €</td>
+                                    </tr>
+                                    <tr class="font-bold bg-gray-100">
+                                        <td class="p-2">Gesamt (inkl. 20% Puffer)</td>
+                                        <td class="p-2">14 - 26</td>
+                                        <td class="p-2">ca. 4.320 - 7.920 €</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <h5 class="font-semibold text-green-700">Vorteile:</h5>
+                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
+                                    <li><b>Maximale Flexibilität:</b> Regeln können jederzeit angepasst und erweitert werden.</li>
+                                    <li><b>Keine Lizenzkosten:</b> Vollständige Kontrolle über den Code und keine Abhängigkeit von Herstellern.</li>
+                                    <li><b>Wissensaufbau im Haus:</b> Die Expertise bleibt in der Organisation.</li>
+                                    <li><b>Geringere Gesamtkosten:</b> Deutlich günstiger bei Nutzung interner Ressourcen.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-red-700">Nachteile:</h5>
+                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
+                                    <li><b>Bindet interne Ressourcen:</b> Mitarbeiter müssen für die Entwicklung abgestellt werden.</li>
+                                    <li><b>Volle Verantwortung:</b> Wartung, Fehlerbehebung und Weiterentwicklung liegen intern.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Softwarekauf -->
+                    <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
+                        <h3 class="text-2xl font-bold text-[#003F5C] mb-4">Option 2: Einkauf kommerzieller Software</h3>
+                        <p class="text-[#366682] mb-6">Hier wird eine bestehende Softwarelösung für Datenqualitätsmanagement eingekauft. Diese bieten oft grafische Oberflächen zur Definition von Regeln und fertige Konnektoren, kommen aber mit wiederkehrenden Kosten und weniger Flexibilität.</p>
+                        
+                        <h4 class="font-bold text-[#003F5C] mb-2">Beispielhafter Kostenrahmen (Marktüblich)</h4>
+                        <div class="overflow-x-auto mb-6">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-[#A0BCCB] text-white">
+                                    <tr>
+                                        <th class="p-2 rounded-tl-lg">Anbieter / Produkt</th>
+                                        <th class="p-2">Kostenrahmen (1. Jahr)</th>
+                                        <th class="p-2 rounded-tr-lg">Link (Illustrativ)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Talend Data Quality</td>
+                                        <td class="p-2">ab 15.000 - 40.000 €</td>
+                                        <td class="p-2"><a href="https://www.talend.com/products/data-quality/" target="_blank" class="text-blue-600 hover:underline">Website</a></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Informatica DQ</td>
+                                        <td class="p-2">ab 20.000 - 50.000 €+</td>
+                                        <td class="p-2"><a href="https://www.informatica.com/products/data-quality.html" target="_blank" class="text-blue-600 hover:underline">Website</a></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200">
+                                        <td class="p-2 font-semibold">Azure Data Factory</td>
+                                        <td class="p-2">Pay-as-you-go (variabel)</td>
+                                        <td class="p-2"><a href="https://azure.microsoft.com/de-de/products/data-factory" target="_blank" class="text-blue-600 hover:underline">Website</a></td>
+                                    </tr>
+                                    <tr class="font-bold bg-gray-100">
+                                        <td class="p-2">Gesamtkosten (marktüblich)</td>
+                                        <td class="p-2" colspan="2">ca. 8.000 - 40.000 €+</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <h5 class="font-semibold text-green-700">Vorteile:</h5>
+                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
+                                    <li><b>Schnellere Inbetriebnahme:</b> Die Grundfunktionalität ist sofort verfügbar.</li>
+                                    <li><b>Hersteller-Support:</b> Unterstützung und Wartung durch den Anbieter.</li>
+                                    <li><b>Bewährte Lösung:</b> Oft im Markt etabliert und getestet.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-red-700">Nachteile:</h5>
+                                <ul class="list-disc list-inside text-sm text-[#366682] space-y-1 mt-1">
+                                    <li><b>Hohe und wiederkehrende Kosten:</b> Lizenz- und Wartungsgebühren.</li>
+                                    <li><b>Geringere Flexibilität:</b> "Vendor-Lock-in", Anpassungen sind oft teuer oder unmöglich.</li>
+                                    <li><b>Blackbox-Effekt:</b> Die interne Funktionsweise ist oft nicht transparent.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 text-center p-6 bg-[#E1EBF1] rounded-lg">
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Empfehlung</h3>
+                    <p class="text-[#366682] max-w-2xl mx-auto">Für das vorliegende Projekt ist die <b>Eigenentwicklung die klar zu bevorzugende Option</b>*. Die Anforderungen sind präzise definiert und können mit Standard-Bibliotheken effizient umgesetzt werden. Die finanziellen Einsparungen sind erheblich, und die geschaffene Lösung ist perfekt auf den Anwendungsfall zugeschnitten, flexibel und zukunftssicher.</p>
+                </div>
+            </section>
+
+            
+            <section id="references" class="card">
+                <button class="accordion-button">
+                    <span>Referenzen</span>
+                    <span class="icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <ol class="list-decimal pl-5 reference-list">
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10061935/" target="_blank">Advances in Catchment Science, Hydrochemistry, and Aquatic ...</a></li>
+                            <li><a href="https://pubs.acs.org/doi/10.1021/acs.est.2c07798" target="_blank">Advances in Catchment Science, Hydrochemistry, and Aquatic Ecology Enabled by High-Frequency Water Quality Measurements - ACS Publications</a></li>
+                            <li><a href="https://serc.carleton.edu/eddie/teaching_materials/modules/module9.html" target="_blank">Using High-Frequency Data to Manage Water Quality - SERC (Carleton)</a></li>
+                            <li><a href="https://open-research-europe.ec.europa.eu/articles/4-244" target="_blank">SentemQC - A novel and cost-efficient method for quality assurance and quality control of high-resolution frequency sensor data in fresh waters. - Open Research Europe</a></li>
+                            <li><a href="https://www.fona.de/medien/pdf/WavEII_Statusseminar2023_low_final.pdf?m=1739968189&" target="_blank">Wassertechnologien: Wiederverwendung - Forschung für Nachhaltigkeit (FONA)</a></li>
+                            <li><a href="https://ketos.co/water-quality-monitoring-compliance-technology" target="_blank">About Water Quality Monitoring Technology and Compliance - KETOS</a></li>
+                            <li><a href="https://www.umweltbundesamt.de/daten/wasser/wasserwirtschaft/qualitaet-des-trinkwassers-aus-zentralen" target="_blank">Qualität des Trinkwassers aus zentralen Versorgungsanlagen - Umweltbundesamt</a></li>
+                            <li><a href="https://www.umweltbundesamt.de/themen/wasser/trinkwasser/trinkwasserqualitaet/daten-zur-trinkwasserqualitaet" target="_blank">Daten zur Trinkwasserqualität - Umweltbundesamt</a></li>
+                            <li><a href="https://edm-1.itrcweb.org/analytical-data-quality-review/" target="_blank">Analytical Data Quality Review: Verification, Validation, and ...</a></li>
+                            <li><a href="https://www.aanderaa.com/media/pdfs/tengberg-et-al-l-&-o-methods-evaluation-of-a-lifetime-based-oxygen-optode.pdf" target="_blank">LIMNOLOGY OCEANOGRAPHY: METHODS - Aanderaa Data Instruments AS</a></li>
+                            <li><a href="https://www.usgs.gov/publications/guidelines-and-standard-procedures-high-frequency-groundwater-quality-monitoring" target="_blank">Guidelines and standard procedures for high-frequency ... - USGS.gov</a></li>
+                            <li><a href="https://www.umweltbundesamt.de/sites/default/files/medien/publikation/long/2832.pdf" target="_blank">Leitlinie zur Methodenvalidierung - Umweltbundesamt</a></li>
+                            <li>WAMO-Datensatzbeschreibung_UserinerSee_04-2025.xlsx</li>
+                            <li><a href="https://www2.gov.bc.ca/assets/gov/environment/air-land-water/water/waterquality/monitoring-water-quality/water-stewardship/stewardship_data_qaqc_guidelines.pdf" target="_blank">Stewardship Water Quality Data QA/QC Guidelines - Gov.bc.ca</a></li>
+                            <li><a href="https://www.lanuv.nrw.de/fileadmin/lanuvpubl/4_arbeitsblaetter/40025.pdf" target="_blank">Fließgewässertypenkarten Nordrhein-Westfalens - LANUV-Arbeitsblatt 25</a></li>
+                            <li><a href="https://www.lawa.de/documents/lawa-rakon-teil-b-i-gewtyp-ref-210806-final-barrierefrei_1689850884.pdf" target="_blank">Rahmenkonzeption Monitoring, Teil B, Bewertungsgrundlagen und Methodenbeschreibungen... - LAWA</a></li>
+                            <li><a href="https://www.fiw.rwth-aachen.de/fileadmin/user_upload/Public_Relations/PDF/mobileVIEW_Abschlussbericht_100S_de.pdf" target="_blank">mobileVIEW - fiw.rwth-aachen.de</a></li>
+                            <li><a href="https://www.epa.gov/choose-fish-and-shellfish-wisely/data-verification-reporting-and-validation" target="_blank">Data Verification, Reporting and Validation | US EPA</a></li>
+                            <li><a href="https://www.tableau.com/de-de/blog/data-prep-101-what-aggregate-function-and-how-do-you-combine-aggregated-data-0" target="_blank">Grundlagen der Datenvorbereitung... - Tableau</a></li>
+                            <li><a href="https://de.wikipedia.org/wiki/Median" target="_blank">Median - Wikipedia</a></li>
+                            <li><a href="https://www.epa.gov/system/files/documents/2021-07/parameter-factsheet_temperature.pdf" target="_blank">FACTSHEET ON WATER QUALITY PARAMETERS - Temperature</a></li>
+                            <li><a href="https://atlas-scientific.com/blog/dissolved-oxygen-in-water-ppm-for-fish/" target="_blank">Dissolved Oxygen In Water: PPM For Fish - Atlas Scientific</a></li>
+                            <li><a href="https://novustat.com/statistik-blog/standardabweichung-interpretation.html" target="_blank">Standardabweichung Interpretation - Novustat</a></li>
+                            <li><a href="https://www.nachhilfe-team.net/lernen-leicht-gemacht/standardabweichung/" target="_blank">Standardabweichung - Schritt für Schritt erklärt... - Nachhilfe-Team.net</a></li>
+                            <li><a href="https://www.noe-lfv.at/download/wissenschaft/2023_2012_Das_thermale_Regime_der_Pielach_Abschlussbericht.pdf" target="_blank">Das thermale Regime der Pielach - NÖ Landesfischereiverband</a></li>
+                            <li><a href="https://www.epa.gov/caddis/temperature" target="_blank">Temperature | US EPA</a></li>
+                            <li><a href="https://www.fondriest.com/environmental-measurements/parameters/water-quality/water-temperature/" target="_blank">Water Temperature - Environmental Measurement Systems</a></li>
+                            <li><a href="https://www.epa.gov/system/files/documents/2021-07/parameter-factsheet_ph.pdf" target="_blank">Parameter Factsheet pH - epa.gov</a></li>
+                            <li><a href="https://waterrangers.com/testkits/tests/ph-in-freshwater/" target="_blank">pH in freshwater - Water Rangers</a></li>
+                            <li><a href="https://basicwaterscience.com/chemical-water-quality-parameters/ph/significance-of-ph-of-water/" target="_blank">Significance of pH of Water - Basic Water Science 101</a></li>
+                            <li><a href="https://www.heathlandgroup.co.uk/articles/dissolved-oxygen-levels" target="_blank">Dissolved Oxygen Levels | Heathland Group Ltd</a></li>
+                            <li><a href="https://www.gov.nt.ca/sites/ecc/files/dissolved_oxygen.pdf" target="_blank">Dissolved Oxygen (DO)</a></li>
+                            <li><a href="https://www.kdhe.ks.gov/DocumentCenter/View/9396/Chlorophyll---A-Criteria-for-Public-Water-Supply-Lakes-or-Reservoirs-PDF" target="_blank">chlorophyll-a criteria for public water supply lakes or reservoirs - KDHE</a></li>
+                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9360045/" target="_blank">Chlorophyll soft-sensor based on machine learning models for algal bloom predictions</a></li>
+                            <li><a href="https://studyflix.de/biologie/oekosystem-see-2525" target="_blank">Ökosystem See • Nahrungskette, Gliederung und Zonierung - Studyflix</a></li>
+                            <li><a href="https://de.wikipedia.org/wiki/PH-Wert" target="_blank">pH-Wert - Wikipedia</a></li>
+                            <li><a href="https://www.reddit.com/r/statistics/comments/2s7icg/proper_way_to_aggregate_medians/" target="_blank">Proper way to aggregate medians? : r/statistics - Reddit</a></li>
+                            <li><a href="https://www.umweltbundesamt.de/themen/wasser/recht-oekonomie-digitalisierung/digitalisierung-wasserwirtschaft" target="_blank">Digitalisierung Wasserwirtschaft - Umweltbundesamt</a></li>
+                            <li><a href="https://pubs.acs.org/doi/10.1021/es504773x" target="_blank">High-Speed Limnology: Using Advanced Sensors to Investigate Spatial Variability...</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-20 py-6 border-t border-[#A0BCCB]">
+            <p class="text-sm text-[#366682]">Diese Infografik visualisiert die Empfehlungen zur Aufbereitung hochfrequenter Wasserqualitätsdaten.</p>
+        </footer>
+
+    </div>
+
+<script>
+// --- START: KORRIGIERTER SCRIPT-BEREICH ---
+
+const colors = {
+    primary: '#003F5C',
+    secondary: '#366682',
+    accent: '#7392A5',
+    light: '#A0BCCB',
+    background: '#E1EBF1'
+};
+
+function wrapLabels(label) {
+    const max_width = 16;
+    if (label.length <= max_width) {
+        return label;
+    }
+    const words = label.split(' ');
+    let lines = [];
+    let currentLine = '';
+    for (const word of words) {
+        if ((currentLine + ' ' + word).trim().length > max_width) {
+            lines.push(currentLine.trim());
+            currentLine = word;
+        } else {
+            currentLine = (currentLine + ' ' + word).trim();
+        }
+    }
+    if (currentLine) {
+        lines.push(currentLine.trim());
+    }
+    return lines;
+}
+
+const tooltipTitleCallback = (tooltipItems) => {
+    const item = tooltipItems[0];
+    let label = item.chart.data.labels[item.dataIndex];
+    if (Array.isArray(label)) {
+        return label.join(' ');
+    }
+    return label;
+};
+
+const defaultChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            labels: {
+                color: colors.primary
+            }
+        },
+        tooltip: {
+            callbacks: {
+                title: tooltipTitleCallback
+            }
+        }
+    },
+    scales: {
+        y: {
+            ticks: { color: colors.secondary },
+            grid: { color: colors.light }
+        },
+        x: {
+            ticks: { color: colors.secondary },
+            grid: { color: colors.light }
+        }
+    }
+};
+
+const rawData = `datetime;air_temperature;water_temperature_1m;water_temperature_2m;water_temperature_4m;conductivity;turbidity;ph;dissolved_oxygen;redox_potential;chlorophyll_a;phycocyanin;doc;toc;nitrate
+2025-04-28 00:00;10.2;13.1;12.5;10.1;350;1.2;8.61;12.1;-50;3.1;0.2;5.1;5.5;0.1
+2025-04-28 01:00;9.8;13.1;12.5;10.1;351;1.1;8.62;12.2;-48;3.0;0.2;5.1;5.5;0.1
+2025-04-28 02:00;9.5;13.1;12.5;10.1;351;1.1;8.63;12.3;-45;3.0;0.2;5.1;5.5;0.1
+2025-04-28 03:00;9.2;13.2;12.5;10.1;350;1.2;8.65;12.4;-42;3.1;0.2;5.1;5.5;0.1
+2025-04-28 04:00;9.0;13.2;12.6;10.1;350;1.2;8.66;12.5;-40;3.1;0.2;5.1;5.5;0.1
+2025-04-28 05:00;8.8;13.2;12.6;10.1;349;1.3;8.68;12.6;-38;3.2;0.2;5.1;5.5;0.1
+2025-04-28 06:00;9.1;13.3;12.6;10.1;349;1.4;8.70;12.7;-35;3.3;0.2;5.1;5.5;0.1
+2025-04-28 07:00;9.5;13.3;12.7;10.1;348;1.5;8.72;12.8;-32;3.4;0.3;5.2;5.6;0.1
+2025-04-28 08:00;10.1;13.4;12.7;10.2;348;1.6;8.74;12.9;-30;3.5;0.3;5.2;5.6;0.1
+2025-04-28 09:00;11.0;13.4;12.8;10.2;347;1.7;8.76;13.0;-28;3.6;0.3;5.2;5.6;0.1
+2025-04-28 10:00;12.2;13.5;12.8;10.2;347;1.8;8.78;13.1;-25;3.8;0.3;5.2;5.6;0.0
+2025-04-28 11:00;13.5;13.6;12.9;10.2;346;1.9;8.80;13.2;-22;4.0;0.4;5.2;5.7;0.0
+2025-04-28 12:00;14.8;13.7;12.9;10.3;346;2.0;8.82;13.3;-20;4.2;0.4;5.3;5.7;0.0
+2025-04-28 13:00;15.5;13.8;13.0;10.3;345;2.1;8.84;13.4;-18;4.5;0.4;5.3;5.8;0.0
+2025-04-28 14:00;16.0;13.9;13.1;10.3;345;2.2;8.86;13.5;-15;4.8;0.5;5.3;5.8;0.0
+2025-04-28 15:00;16.2;14.0;13.2;10.4;344;2.1;8.88;13.6;-12;5.0;0.5;5.3;5.8;0.0
+2025-04-28 16:00;15.8;14.1;13.3;10.4;344;2.0;8.89;13.6;-10;4.9;0.5;5.4;5.9;0.0
+2025-04-28 17:00;15.2;14.2;13.4;10.5;345;1.9;8.89;13.5;-13;4.7;0.4;5.4;5.9;0.0
+2025-04-28 18:00;14.5;14.1;13.5;10.5;345;1.8;8.87;13.4;-16;4.5;0.4;5.4;5.9;0.1
+2025-04-28 19:00;13.8;14.0;13.4;10.5;346;1.7;8.85;13.3;-21;4.2;0.3;5.3;5.8;0.1
+2025-04-28 20:00;13.0;13.8;13.3;10.4;347;1.6;8.82;13.1;-26;3.9;0.3;5.3;5.8;0.1
+2025-04-28 21:00;12.5;13.6;13.2;10.3;348;1.5;8.78;12.9;-31;3.6;0.3;5.2;5.7;0.1
+2025-04-28 22:00;11.8;13.4;13.0;10.2;349;1.4;8.74;12.7;-36;3.4;0.2;5.2;5.7;0.1
+2025-04-28 23:00;11.2;13.2;12.8;10.2;350;1.3;8.70;12.5;-41;3.2;0.2;5.2;5.6;0.1`;
+
+function parseData(csv) {
+    const lines = csv.trim().split('\n');
+    const headers = lines[0].split(';');
+    return lines.slice(1).map(line => {
+        const values = line.split(';');
+        let obj = {};
+        headers.forEach((header, i) => {
+            if (header.trim() === 'datetime') {
+                obj[header.trim()] = values[i];
+            } else {
+                obj[header.trim()] = parseFloat(values[i]);
+            }
+        });
+        return obj;
+    });
+}
+const parsedData = parseData(rawData);
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    new Chart(document.getElementById('qualityFlagChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Einwandfrei', 'Ausreißer', 'Fehlerhaft', 'Fehlend'],
+            datasets: [{
+                label: 'Qualitäts-Flags',
+                data: [18, 2, 3, 1],
+                backgroundColor: [colors.primary, '#FBBF24', '#F87171', colors.light],
+                borderColor: '#FFFFFF',
+                borderWidth: 2
+            }]
+        },
+        options: {
+           ...defaultChartOptions,
+            plugins: {
+               ...defaultChartOptions.plugins,
+                 legend: {
+                    position: 'bottom',
+                    labels: { color: colors.primary }
+                },
+            },
+            cutout: '60%'
+        }
+    });
+    
+    new Chart(document.getElementById('dailyFluctuationChart'), {
+        type: 'line',
+        data: {
+            labels: parsedData.map(row => row.datetime.split(' ')[1]),
+            datasets: [
+                {
+                    label: 'pH-Wert',
+                    data: parsedData.map(row => row.ph),
+                    borderColor: colors.primary,
+                    backgroundColor: colors.primary + '33',
+                    yAxisID: 'y',
+                    tension: 0.3
+                },
+                {
+                    label: 'Sauerstoff (mg/L)',
+                    data: parsedData.map(row => row.dissolved_oxygen),
+                    borderColor: colors.accent,
+                    backgroundColor: colors.accent + '33',
+                    yAxisID: 'y1',
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+           ...defaultChartOptions,
+            scales: {
+                 y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: { display: true, text: 'pH-Wert', color: colors.primary },
+                    ticks: { color: colors.primary },
+                    grid: { drawOnChartArea: false }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    title: { display: true, text: 'Sauerstoff (mg/L)', color: colors.accent },
+                    ticks: { color: colors.accent },
+                    grid: { drawOnChartArea: false }
+                },
+                x: {
+                    ticks: { color: colors.secondary, maxRotation: 45, minRotation: 45 },
+                    grid: { color: colors.light }
+                }
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false
+            }
+        }
+    });
+    
+    new Chart(document.getElementById('consolidationMetricsChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Wassertemperatur', 'Gelöster Sauerstoff', 'pH-Wert / Algen'].map(l => wrapLabels(l)),
+            datasets: [{
+                label: 'Anzahl empfohlener Kennzahlen',
+                data: [4, 4, 3],
+                backgroundColor: [colors.primary, colors.secondary, colors.accent],
+                borderRadius: 4
+            }]
+        },
+        options: {
+           ...defaultChartOptions,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: colors.secondary, stepSize: 1 },
+                    grid: { color: colors.light }
+                },
+                x: {
+                    ticks: { color: colors.secondary },
+                    grid: { drawOnChartArea: false }
+                }
+            },
+             plugins: {
+               ...defaultChartOptions.plugins,
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    const accordions = document.querySelectorAll('.accordion-button');
+    accordions.forEach(button => {
+        button.addEventListener('click', () => {
+            // Automatically open the first accordion if it's not already open
+            if(button.classList.contains('active')) {
+                 button.classList.remove('active');
+                 const content = button.nextElementSibling;
+                 content.style.maxHeight = null;
+            } else {
+                accordions.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.nextElementSibling.style.maxHeight = null;
+                });
+                button.classList.add('active');
+                const content = button.nextElementSibling;
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
+    // Open the first accordion by default
+    if (accordions.length > 0) {
+        accordions[0].click();
+    }
+});
+</script>
+
+</body>
+</html>
