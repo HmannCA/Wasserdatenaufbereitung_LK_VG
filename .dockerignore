@@ -1,0 +1,14 @@
+# Versteckten Git-Ordner ignorieren
+.git
+
+# Den lokalen node_modules-Ordner ignorieren. Das ist der wichtigste Teil!
+node_modules
+
+# Log-Dateien ignorieren, falls welche entstehen
+*.log
+
+# Unsere lokale Datenbank-Datei ignorieren
+comments.db
+
+# VS Code Einstellungsordner ignorieren
+.vscode
